@@ -1,4 +1,5 @@
 <?php
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('admin/users','AdminUsersController');
+
+Route::get("/user/1/docente", function(){
+
+    $nombre = User::find(1);
+    
+
+    return $nombre->rol_id;
+});
