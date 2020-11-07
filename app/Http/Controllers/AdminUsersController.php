@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
+use App\Docente;
 use Illuminate\Http\Request;
 
 class AdminUsersController extends Controller
@@ -11,9 +12,20 @@ class AdminUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     
+    
     public function index()
-    {
-        return view('admin.users.index');
+    {   
+
+        $docentes = User::all();
+
+        foreach ($docentes as $d)
+            $usuarios[]= $d->docente;
+
+        
+        return view('admin.users.index',compact('usuarios'));
     }
 
     /**
@@ -32,9 +44,18 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function vista(){
+
+        return view('admin.users.vista');
+    }
     public function store(Request $request)
     {
-        //
+
+        //User::create($request->all());
+
+        $datos = request()->all();
+
+        return response()->json($datos);
     }
 
     /**

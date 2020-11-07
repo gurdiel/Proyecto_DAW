@@ -1,5 +1,6 @@
 <?php
 use App\User;
+use App\Clase;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('admin/users/vista', 'AdminUsersController@vista')->name('users.vista');
+
+
+
 Route::resource('admin/users','AdminUsersController');
 
-Route::get("/user/1/docente", function(){
+Route::get("/user/4/docente", function(){
 
-    $nombre = User::find(1);
-    
+    /*$nombre = User::all();
+    foreach($nombre as $n)
+        $nombres[]= $n->docente;
 
-    return $nombre->rol_id;
+    return $nombres;*/
+
+    return Clase::find()->docente_id=3;
 });
