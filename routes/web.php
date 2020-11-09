@@ -1,6 +1,7 @@
 <?php
 use App\User;
 use App\Clase;
+use App\Docente;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,9 @@ Route::get("/user/4/docente", function(){
         $nombres[]= $n->docente;
 
     return $nombres;*/
+    
+    $array = Docente::find(4)->clase;
 
-    return Clase::find()->docente_id=3;
+
+    return $array;
 });

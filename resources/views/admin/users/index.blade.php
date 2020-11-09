@@ -27,7 +27,7 @@
         <tr>
             <td>{{$user->id}}</td>
             <td>{{$user->tipo}}</td>
-            <td>{{$user->name}}</td>
+            <td>{{$user->nombre}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->telefono}}</td>
             <td>{{$user->user_id}}</td>
