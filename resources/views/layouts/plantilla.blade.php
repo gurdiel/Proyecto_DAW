@@ -7,13 +7,19 @@
         <!-- Fonts -->
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css')}}" rel="stylesheet">
+        <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
     </head>
 
 
     <body>
-    <img src="{{ asset ('images/tablero.jpg')}}" id="fondoImagen">
-    @yield("contenido")
+
+    @yield('contenido')
+
+
+    <footer>
+        <p>KTC<br><br><small>by</small> Rafael Gurdiel Sanchez - 2020</p>
+    </footer>
+
 
     </body>
 </html>

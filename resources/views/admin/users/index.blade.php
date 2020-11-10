@@ -1,15 +1,10 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
+@section('contenido')
+
+        <div class="card-body">
             <p>EN construcción</p>
-        </div>
+        
 
         <table width="700" border="1">
 
@@ -35,5 +30,6 @@
             @endforeach
         @endif
         </table>
-    </body>
-</html>
+        </div>
+@endsection
+

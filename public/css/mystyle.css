@@ -1,0 +1,46 @@
+body, html {
+    font-family: tiza;
+    font-size: medium;
+    color: white;
+    height: 100%;
+    background-repeat: no-repeat;
+    background: url(../images/tablero.JPG) no-repeat center center fixed;
+    background-size: 100% 100%;
+}
+
+small{
+    font-size: xx-small;
+}
+
+@font-face{
+    font-family: tiza;
+    src: url(../fuente/NeatChalk-P4Wm.ttf);
+}
+main{
+    padding-left: 100px;
+}
+
+.container {
+    
+    background-color:unset;
+}
+.card{
+    background-color:unset;
+}
+
+.div1{
+    padding-bottom: 50px;
+}
+.grupo{
+    padding-top: 20px;
+}
+
+footer {
+    text-align: center;
+    align-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    color: white;
+  }
