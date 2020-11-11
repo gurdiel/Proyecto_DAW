@@ -19,10 +19,12 @@ class AdminUsersController extends Controller
     public function index()
     {   
 
-        $docentes = User::all();
+        /*$docentes = User::all();
 
         foreach ($docentes as $d)
-            $usuarios[]= $d->docente;
+            $usuarios[]= $d->docente;*/
+
+        $usuarios = User::all();
 
         
         return view('admin.users.index',compact('usuarios'));

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Panel de control</div>
+                <div class="card-header">Panel de control de {{Auth::user()->role->nombre}}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,9 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    @if(Auth::user()->role_id == 1)
                     Bienvenido, {{ Auth::user()->name }} eres {{ Auth::user()->role->nombre }} que deseas hacer?
+                    @if(Auth::user()->role_id == 1)
                     <div>
                     <div class="list-group grupo">
                         <a href="{{url('/admin/users/')}}" class="list-group-item list-group-item-action active">Listar usuarios</a>
@@ -25,6 +24,11 @@
                         <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Nueva funcionalidad</a>
                     </div>
                     </div>
+                    @elseif(Auth::user()->role_id == 2)
+                        <div class="card-body">
+                        <p>Esto es lo que sale en el else.</p>
+                        <p>{{Auth::user()->docente->clase->anuncios}}
+                        </div>
                     @endif
                 </div>
                 
