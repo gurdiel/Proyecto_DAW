@@ -27,7 +27,7 @@
                     @elseif(Auth::user()->role_id == 2)
                         <div class="card-body">
                         <p>Esto es lo que sale en el else.</p>
-                        <p>{{Auth::user()->docente->clase->anuncios}}
+                    
                         </div>
                     @endif
                 </div>

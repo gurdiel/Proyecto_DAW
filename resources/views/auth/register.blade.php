@@ -25,16 +25,17 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('telefono') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="telefono" type="number" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('role_id') }}</label>
 
                             <div class="col-md-6">
                                 <input id="role_id" type="number" class="form-control @error('role_id') is-invalid @enderror" name="role_id" value="{{ old('role_id') }}" required autocomplete="role_id" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 

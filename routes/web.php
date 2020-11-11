@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('admin/users/vista', 'AdminUsersController@vista')->name('users.vista');
 
-
+Route::resource('/admin/docentes','AdminDocentesController');
 
 Route::resource('admin/users','AdminUsersController');
 
