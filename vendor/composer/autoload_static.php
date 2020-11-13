@@ -420,6 +420,7 @@ class ComposerStaticInit0b7945664afef13e50bb0da498b9e8c0
         'App\\Escolare' => __DIR__ . '/../..' . '/app/Escolare.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminDocentesController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminDocentesController.php',
+        'App\\Http\\Controllers\\AdminMensajesController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminMensajesController.php',
         'App\\Http\\Controllers\\AdminUsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminUsersController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',

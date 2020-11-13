@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Docente;
+use App\Progenitore;
+use App\Escolare;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Hash;
 
 class AdminUsersController extends Controller
 {
@@ -25,7 +29,7 @@ class AdminUsersController extends Controller
             $usuarios[]= $d->docente;*/
 
         $usuarios = User::all();
-        
+
 
         
         return view('admin.users.index',compact('usuarios'));
@@ -33,7 +37,7 @@ class AdminUsersController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -52,13 +56,62 @@ class AdminUsersController extends Controller
         return view('admin.users.vista');
     }
     public function store(Request $request)
-    {
+    {      
+         User::create([
+        'name' => $request['nombre'],
+        'role_id' => $request['role_id'],
+        'email' => $request['email'],
+        'password' => Hash::make($request['password']),
+            ]);
 
-        //User::create($request->all());
+            $usuarios = User::all();
+            $id = $usuarios->last()->id;
+             
+    
 
-        $datos = request()->all();
+        if($request['role_id']==2){
 
-        return response()->json($datos);
+            Docente::create([
+
+                'nombre' => $request['nombre'],
+                'email' => $request['email'],
+                'telefono' => $request['telefono'],
+                'user_id' => $id,
+
+            ]);
+
+
+        }elseif($request['role_id']==3){
+
+            Progenitore::create([
+                'nombre' => $request['nombre'],
+                'email' => $request['email'],
+                'fam_aut' => $request['fam_aut'],
+                'user_id' => $id,
+                'escolare_id' => $request['escolare_id'],
+
+            ]);
+
+        }elseif($request['role_id']==4){
+
+            Escolare::create([
+
+                'nombre' => $request['nombre'],
+                'user_id' => $id,
+                'clase_id' => $request['clase_id'],
+                'puntos' => 0,
+                'items' => 'Ninguno, aún',
+
+                
+            ]);
+
+        }
+
+        
+        $usuarios = User::all();
+        return view('admin.users.index',compact('usuarios'));
+
+        
     }
 
     /**

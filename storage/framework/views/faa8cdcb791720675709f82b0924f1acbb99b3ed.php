@@ -12,7 +12,7 @@
                         <?php echo csrf_field(); ?>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Name')); ?></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Nombre')); ?></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control <?php if ($errors->has('name')) :
@@ -48,6 +48,20 @@ endif; ?>" name="telefono" value="<?php echo e(old('telefono')); ?>" required au
 
                             <div class="col-md-6">
                                 <input id="fam_aut" type="text" name="fam_aut">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="escolare_id" class="col-md-4 col-form-label text-md-right"><?php echo e(__('escolare_id')); ?></label>
+
+                            <div class="col-md-6">
+                                <input id="escolare_id" type="number" name="escolare_id">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="clase_id" class="col-md-4 col-form-label text-md-right"><?php echo e(__('clase_id')); ?></label>
+
+                            <div class="col-md-6">
+                                <input id="clase_id" type="number" name="clase_id">
                             </div>
                         </div>
                         <div class="form-group row">

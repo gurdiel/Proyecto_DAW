@@ -12,6 +12,7 @@ return array(
     'App\\Escolare' => $baseDir . '/app/Escolare.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminDocentesController' => $baseDir . '/app/Http/Controllers/AdminDocentesController.php',
+    'App\\Http\\Controllers\\AdminMensajesController' => $baseDir . '/app/Http/Controllers/AdminMensajesController.php',
     'App\\Http\\Controllers\\AdminUsersController' => $baseDir . '/app/Http/Controllers/AdminUsersController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',

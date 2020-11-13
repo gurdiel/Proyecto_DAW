@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/pie.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -85,8 +86,8 @@
             @yield('contenido')
         </main>
     </div>
-    <footer>
+    <div id="footer">
         <p>KTC<br><br><small>by</small> Rafael Gurdiel Sanchez - 2020</p>
-    </footer>
+    </div>
 </body>
 </html>

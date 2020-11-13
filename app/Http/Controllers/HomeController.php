@@ -31,6 +31,15 @@ class HomeController extends Controller
             $clases = Auth::user()->docente->clase;
         return view('home',compact('clases'));
         }
+        elseif(Auth::user()->role_id == 3){
+
+            $hijos = Auth::user()->progenitore->escolare;
+            
+            return view('home',compact('hijos'));
+        }elseif(Auth::user()->role_id == 4){
+
+            
+        }
         
         return view('home');
     }

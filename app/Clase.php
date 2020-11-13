@@ -9,7 +9,7 @@ class Clase extends Model
     //
     public function escolare(){
 
-        return $this->hasMany("App\Escolare");
+        return $this->hasOne("App\Escolare");
     }
 
     public function docente(){

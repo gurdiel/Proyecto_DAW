@@ -24,10 +24,13 @@
             <td><?php echo e($user->role->nombre); ?></td>
             <td><?php echo e($user->name); ?></td>
             <td><?php echo e($user->email); ?></td>
+
             <?php if($user->role_id == '2'): ?>
             <td><?php echo e($user->docente->telefono); ?></td>
             <?php elseif($user->role_id == '1'): ?>
-            <td><?php echo e($user->role_id); ?></td>
+            <td><?php echo e('No tiene'); ?></td>
+            <?php elseif($user->role_id == '4'): ?>
+            <td><?php echo e('No tiene'); ?></td>
             <?php endif; ?>
 
             <td><?php echo e($user->id); ?></td>

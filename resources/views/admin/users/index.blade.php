@@ -24,10 +24,13 @@
             <td>{{$user->role->nombre}}</td>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
+
             @if($user->role_id == '2')
             <td>{{$user->docente->telefono}}</td>
             @elseif($user->role_id == '1')
-            <td>{{$user->role_id}}</td>
+            <td>{{'No tiene'}}</td>
+            @elseif($user->role_id == '4')
+            <td>{{'No tiene'}}</td>
             @endif
 
             <td>{{$user->id}}</td>

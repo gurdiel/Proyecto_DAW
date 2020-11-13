@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Docente;
+use App\Escolare;
+use App\Progenitore;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -64,15 +66,20 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {      
+    {   
+        User::create([
+            'name' => $data['name'],
+            'role_id' => $data['role_id'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
         $usuarios = User::all();
-            $ultimo = $usuarios->last();
-            $id = $ultimo->id +1; 
+        $ultimo = $usuarios->last(); 
+        $id = $ultimo->id;
     
 
-        if($data['role_id']=2){
-
-            
+        if($data['role_id']==2){
 
             Docente::create([
 
@@ -81,25 +88,34 @@ class RegisterController extends Controller
                 'telefono' => $data['telefono'],
                 'user_id' => $id,
 
-            
             ]);
 
 
-        }elseif($data['role_id']=3){
+        }elseif($data['role_id']==3){
 
             Progenitore::create([
                 'nombre' => $data['name'],
+                'email' => $data['email'],
                 'fam_aut' => $data['fam_aut'],
                 'user_id' => $id,
                 'escolare_id' => $data['escolare_id'],
+
+            ]);
+
+        }elseif($data['role_id']==4){
+
+            Escolare::create([
+
+                'nombre' => $data['name'],
+                'user_id' => $id,
+                'clase_id' => $data['clase_id'],
+                'puntos' => 0,
+                'items' => 'Ninguno, aún',
+
+                
             ]);
 
         }
-        return User::create([
-                'name' => $data['name'],
-                'role_id' => $data['role_id'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);        
+        return $ultimo;        
     }
 }

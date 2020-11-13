@@ -20,7 +20,7 @@
                    
                     <div class="list-group grupo">
                         <a href="<?php echo e(url('/admin/users/')); ?>" class="list-group-item list-group-item-action active">Listar usuarios</a>
-                        <a href="#" class="list-group-item list-group-item-action active">Crear usuario</a>
+                        <a href="<?php echo e(url('admin/users/create')); ?>" class="list-group-item list-group-item-action active">Crear usuario</a>
                         <a href="#" class="list-group-item list-group-item-action active">Modificar usuario</a>
                         <a href="#" class="list-group-item list-group-item-actiona active">Eliminar usuario</a>
                         <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Nueva funcionalidad</a>
@@ -38,9 +38,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container grupo">
                         <?php if($clases): ?>
                                 <?php $__currentLoopData = $clases; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $clase): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="container grupo">
                             <div class="row">
                             
                                 <div class="col-2">
@@ -53,9 +53,63 @@
                                 </div>
                                 
                             </div>
+                            </div>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+                            <?php elseif(Auth::user()->role_id == 3): ?>
+
+                            <div class="container grupo">
+                                <div class="row">
+                                    <div class="card-body">
+                                        Esto es lo que sale cuando eres PROGENITOR.                    
+                                    </div>
+                                </div>
+                                <?php if($hijos): ?>
+                                <?php $__currentLoopData = $hijos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hijo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="container grupo">
+                                        <div class="row">
+                            
+                                            <div class="col-2">
+                                                <?php echo e($hijo->clase->nombre); ?>
+
+                                            </div>
+                                            <div class="div col-6">
+                                            <?php echo e($hijo->clase->anuncios); ?>
+
+                                            </div>                              
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>Tu hijo va a la clase: <?php echo e($hijo->clase->nombre); ?></p>
+
+                                                <p>Estos son los anuncios:  <?php echo e($hijo->clase->anuncios); ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php endif; ?>
+
+                            
+
+                            <?php elseif(Auth::user()->role_id == 4): ?>
+
+                        <div class="container grupo">
+                            <div class="row">
+                                <div class="card-body">
+                                    Esto es lo que sale cuando eres alumno.                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <?php echo e(Auth::user()->escolare->clase->anuncios); ?>
+
+                                    <p>Tienes algún item: <?php echo e(Auth::user()->escolare->items); ?></p>
+                                    <p>Tienes : <?php echo e(Auth::user()->escolare->puntos); ?> puntos</p>
+                                </div>
+                            </div>
                         </div>
+                        
                     <?php endif; ?>
                 </div>
                 
