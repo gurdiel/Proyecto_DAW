@@ -24,13 +24,8 @@
             <td>{{$user->role->nombre}}</td>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
-            @if($user->role_id == '2')
-            <td>{{$user->docente->telefono}}</td>
-            @elseif($user->role_id == '1')
-            <td>{{$user->role_id}}</td>
-            @endif
-
-            <td>{{$user->id}}</td>
+            <td>{{$user->telefono}}</td>
+            <td>{{$user->user_id}}</td>
         </tr>
             @endforeach
         @endif

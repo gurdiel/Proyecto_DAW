@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('contenido'); ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -34,11 +36,18 @@ endif; ?>
                             <label for="telefono" class="col-md-4 col-form-label text-md-right"><?php echo e(__('telefono')); ?></label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="number" class="form-control <?php if ($errors->has('telefono')) :
+                                <input id="telefono" type="text" class="form-control <?php if ($errors->has('telefono')) :
 if (isset($message)) { $messageCache = $message; }
 $message = $errors->first('telefono'); ?> is-invalid <?php unset($message);
 if (isset($messageCache)) { $message = $messageCache; }
 endif; ?>" name="telefono" value="<?php echo e(old('telefono')); ?>" required autocomplete="telefono" autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fam_aut" class="col-md-4 col-form-label text-md-right"><?php echo e(__('fam_aut')); ?></label>
+
+                            <div class="col-md-6">
+                                <input id="fam_aut" type="text" name="fam_aut">
                             </div>
                         </div>
                         <div class="form-group row">

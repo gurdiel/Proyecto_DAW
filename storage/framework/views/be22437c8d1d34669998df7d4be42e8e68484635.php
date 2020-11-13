@@ -24,8 +24,13 @@
             <td><?php echo e($user->role->nombre); ?></td>
             <td><?php echo e($user->name); ?></td>
             <td><?php echo e($user->email); ?></td>
-            <td><?php echo e($user->telefono); ?></td>
-            <td><?php echo e($user->user_id); ?></td>
+            <?php if($user->role_id == '2'): ?>
+            <td><?php echo e($user->docente->telefono); ?></td>
+            <?php elseif($user->role_id == '1'): ?>
+            <td><?php echo e($user->role_id); ?></td>
+            <?php endif; ?>
+
+            <td><?php echo e($user->id); ?></td>
         </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <?php endif; ?>

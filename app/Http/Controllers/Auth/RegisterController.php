@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Docente;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,20 +64,35 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {   
+    {      
+        $usuarios = User::all();
+            $ultimo = $usuarios->last();
+            $id = $ultimo->id +1; 
+    
+
         if($data['role_id']=2){
+
+            
 
             Docente::create([
 
-                'tipo' => $data['name'],
                 'nombre' => $data['name'],
                 'email' => $data['email'],
                 'telefono' => $data['telefono'],
-                'user_id' => $data['role_id'],
+                'user_id' => $id,
 
             
             ]);
 
+
+        }elseif($data['role_id']=3){
+
+            Progenitore::create([
+                'nombre' => $data['name'],
+                'fam_aut' => $data['fam_aut'],
+                'user_id' => $id,
+                'escolare_id' => $data['escolare_id'],
+            ]);
 
         }
         return User::create([

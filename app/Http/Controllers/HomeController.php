@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    
     public function index()
     {
+        if(Auth::user()->role_id == 2){
+            $clases = Auth::user()->docente->clase;
+        return view('home',compact('clases'));
+        }
+        
         return view('home');
     }
 }

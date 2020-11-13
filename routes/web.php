@@ -26,6 +26,8 @@ Route::get('admin/users/vista', 'AdminUsersController@vista')->name('users.vista
 
 Route::resource('/admin/docentes','AdminDocentesController');
 
+Route::resource('/admin/mensajes', 'AdminMensajesController');
+
 Route::resource('admin/users','AdminUsersController');
 
 Route::get("/user/4/docente", function(){

@@ -14,6 +14,6 @@ class Docente extends Model
 
     public function clase(){
 
-        return $this->hasOne("App\Clase");
+        return $this->hasMany("App\Clase");
     }
 }

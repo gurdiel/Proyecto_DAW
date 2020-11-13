@@ -46,4 +46,20 @@ class User extends Authenticatable
 
         return $this->belongsTo('App\Role');
     }
+
+    public function escolare(){
+
+        return $this->hasOne('App\Escolare');
+    }
+
+
+    public function progenitore(){
+
+        return $this->hasOne('App\Progenitore');
+    }
+
+    public function mensaje(){
+
+        return $this->hasMany('App\Mensaje');
+    }
 }
