@@ -1,14 +1,52 @@
 body, html {
 
-    font-family: tiza;
-    font-size: medium;
+    font-family: tizaMinusculas;
+    font-size: larger;
     color: white;
-    border-color: blue;
     height: 100%;
     background-repeat: no-repeat;
     background: url(../images/tablero.JPG) no-repeat center center fixed;
     background-size: 100% 100%;
     
+    
+}
+.padtop{
+
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.migas{
+    font-size: medium;
+    background-color: unset;
+}
+
+.lineado{
+    line-height: 2em;
+}
+
+.pad{
+    padding-top: 20px;
+}
+table{
+
+    padding-top: 20px;
+    table-layout: fixed;
+    width: 1200px;
+}
+
+th, td {
+    border: 1px solid black;
+    width: 100px;
+    word-wrap: break-word;
+}
+
+.tdth1{
+    width:20px;
+}
+
+.tdth2{
+    width: 50px;
 }
 
 small{
@@ -18,6 +56,15 @@ small{
 @font-face{
     font-family: tiza;
     src: url(../fuente/NeatChalk-P4Wm.ttf);
+}
+
+@font-face{
+    font-family: tizaMinusculas;
+    src: url(../fuente/buena.ttf);
+}
+.foto{
+
+    font-size: xx-small;
 }
 main{
     padding-left: 100px;
@@ -35,16 +82,13 @@ main{
     padding-bottom: 50px;
 }
 .grupo{
-
-    border-color: blue;
-    border: 2px solid;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 #footer {
    
-    font-size: xx-small;
+    font-size:small;
     padding-top: 100px;
     padding-bottom: 0px;
     text-align: center;
@@ -52,4 +96,25 @@ main{
     bottom: 0;
     width: 100%;
     height: 80px;
+  }
+  .peq{
+      font-size: small;
+      height: 90%;
+      width: 90%;
+      text-align: center;
+  }
+  .peq1{
+      font-size: medium;
+  }
+  .grande{
+      font-size: xx-large;
+      padding-bottom: 10px;
+  }
+  .peq2{
+      font-size: large;
+      text-align: center;
+  }
+
+  .centrado{
+      text-align: center;
   }

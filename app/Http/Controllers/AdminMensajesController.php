@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mensaje;
+use App\Clase;
+use Auth;
+
 use Illuminate\Http\Request;
 
 class AdminMensajesController extends Controller
@@ -21,10 +25,14 @@ class AdminMensajesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+
+        return view('admin.mensajes.create', compact('id'));
+        
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -35,6 +43,16 @@ class AdminMensajesController extends Controller
     public function store(Request $request)
     {
         //
+        Mensaje::create([
+            'titulo' => $request['titulo'],
+            'mensaje' => $request['mensaje'],
+            'user_id' => $request['user_id'],
+            'clase_id' => $request['clase_id'],
+                ]);
+            $mensajes=Mensaje::all();
+            $clase =Clase::find($request['clase_id']);
+        
+        return view('admin.mensajes.index',compact('mensajes'),compact('clase'));
     }
 
     /**
@@ -45,7 +63,11 @@ class AdminMensajesController extends Controller
      */
     public function show($id)
     {
-        //
+        $mensajes= Mensaje::all();
+        $clase = Clase::find($id);
+
+
+        return view('admin.mensajes.index', compact('mensajes'),compact('clase'));
     }
 
     /**
@@ -56,7 +78,7 @@ class AdminMensajesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.mensajes.create', compact('id'));
     }
 
     /**
@@ -79,6 +101,10 @@ class AdminMensajesController extends Controller
      */
     public function destroy($id)
     {
+        Mensaje::destroy($id);
+
+        $clases = Auth::user()->docente->clase;
+        return view('home',compact('clases'));
         //
     }
 }

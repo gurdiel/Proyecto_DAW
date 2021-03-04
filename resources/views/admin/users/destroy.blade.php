@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            <p>Página para agragar usuarios</p>
+            <p>Página para destruir usuarios</p>
         </div>
     </body>
 </html>

@@ -17,8 +17,6 @@ class CreateMensajesTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->string('mensaje');
-            $table->integer('clase_id');
-            $table->integer('user_id');
             $table->timestamps();
         });
     }

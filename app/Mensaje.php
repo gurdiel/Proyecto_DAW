@@ -6,15 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mensaje extends Model
 {
-    public function user(){
 
-        return $this->belongsTo('App\User');
-    }
-
-    public function clase(){
-
-        return $this->belongsTo('App\Clase');
-    }
+    protected $fillable=[
+        'titulo','mensaje','user_id','clase_id',
+    ];
 
     //
 }

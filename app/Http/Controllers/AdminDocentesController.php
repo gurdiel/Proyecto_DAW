@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Escolare;
+use App\Clase;
+use App\Item;
+use App\User;
+use Auth;
 
 class AdminDocentesController extends Controller
 {
@@ -13,7 +18,8 @@ class AdminDocentesController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('admin.docentes.index');
     }
 
     /**
@@ -45,7 +51,11 @@ class AdminDocentesController extends Controller
      */
     public function show($id)
     {
-        //
+        $alumnos = Escolare::all();
+        $clase = Clase::findOrFail($id);
+
+        
+         return view('admin.docentes.index',compact('alumnos'),compact('clase'));
     }
 
     /**
@@ -79,6 +89,23 @@ class AdminDocentesController extends Controller
      */
     public function destroy($id)
     {
+        $items = Item::all();
+        
+
+        foreach($items as $item){
+            if($item->escolare_id == $id)
+                Item::destroy($item->id);
+        }
+        $escolar = Escolare::findOrFail($id);
+        User::destroy($escolar->user_id);
+        Escolare::destroy($id);
+        
+
+        $clases = Auth::user()->docente->clase;
+
+        return view('home',compact('clases'));
+        
+
         //
     }
 }

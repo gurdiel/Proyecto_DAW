@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Item;
 use Auth;
 
 class HomeController extends Controller
@@ -37,7 +38,12 @@ class HomeController extends Controller
             
             return view('home',compact('hijos'));
         }elseif(Auth::user()->role_id == 4){
+            
+            $escolar = Auth::user()->escolare;
 
+            $items = Item::all();
+
+            return view('home',compact('escolar'),compact('items'));
             
         }
         

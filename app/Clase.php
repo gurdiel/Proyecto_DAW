@@ -17,10 +17,6 @@ class Clase extends Model
         return $this->belongsTo('App\Docente');
     }
 
-    public function menaje(){
-
-        return $this->belongsTo('App\Role');
-    }
 
     public function mensaje(){
 

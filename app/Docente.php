@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Docente extends Model
 {
     //
+    
     protected $fillable = [
         'tipo', 'nombre','email', 'telefono', 'user_id'
     ];

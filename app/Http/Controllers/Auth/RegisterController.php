@@ -6,6 +6,7 @@ use App\User;
 use App\Docente;
 use App\Escolare;
 use App\Progenitore;
+use App\Foto;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -53,7 +54,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
         ]);
@@ -67,11 +68,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
+
+        if($archivo=$data['foto_id']){
+
+            $nombre=$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $foto=Foto::create(['ruta_foto'=>$nombre]);
+            $data['foto_id']=$foto->id;
+
+            }
+
         User::create([
-            'name' => $data['name'],
+            'nombre' => $data['nombre'],
             'role_id' => $data['role_id'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'foto_id' => $data['foto_id'],
         ]);
 
         $usuarios = User::all();
@@ -83,7 +95,7 @@ class RegisterController extends Controller
 
             Docente::create([
 
-                'nombre' => $data['name'],
+                'nombre' => $data['nombre'],
                 'email' => $data['email'],
                 'telefono' => $data['telefono'],
                 'user_id' => $id,
@@ -94,11 +106,11 @@ class RegisterController extends Controller
         }elseif($data['role_id']==3){
 
             Progenitore::create([
-                'nombre' => $data['name'],
+                'nombre' => $data['nombre'],
                 'email' => $data['email'],
+                'telefono' => $data['telefono'],
                 'fam_aut' => $data['fam_aut'],
                 'user_id' => $id,
-                'escolare_id' => $data['escolare_id'],
 
             ]);
 
@@ -106,11 +118,12 @@ class RegisterController extends Controller
 
             Escolare::create([
 
-                'nombre' => $data['name'],
+                'nombre' => $data['nombre'],
                 'user_id' => $id,
                 'clase_id' => $data['clase_id'],
                 'puntos' => 0,
                 'items' => 'Ninguno, aún',
+                'progenitore_id' => $data['progenitore_id'],
 
                 
             ]);
