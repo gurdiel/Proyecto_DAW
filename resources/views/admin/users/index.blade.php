@@ -12,13 +12,13 @@
 @endsection
 
 @section('contenido')
-
+        @if(Auth::user()->role_id == 1)
         <div class="container-fluid pad peq2">        
-        <div class="title-card text-success grande">Lista completa de usuarios registrados.</div>
+        <div class="title-card text-success grande">Lista completa de usuarios registrados</div>
                         <table class="table table-hover pad">
 
                         <tr class="text-info">
-                            <th class="tdth1" scope="col">I</th>
+                            <th class="tdth1" scope="col">Id</th>
                             <th class="tdth1" scope="col">Foto</th>
                             <th class="tdth2" scope="col">Tipo</th>
                             <th class="tdth2" scope="col">Nombre</th>
@@ -33,7 +33,10 @@
                         <tr>
                             <td class="tdth1" style="vertical-align:middle;">{{$user->id}}</td>
                             @if($user->foto)
-                            <td class="tdth1 img-responsive"><img src="../images/{{$user->foto->ruta_foto}}" width="100%"/></td>
+                            <td class="tdth1 img-responsive">
+                            <!--ESTO ES LO QUE PONÍA EN EL HOMESTEAD...<img src="images/{{$user->foto->ruta_foto}}" width="100%"/>-->
+                            <img src = "{{asset('images/' . $user->foto->ruta_foto)}}" width = "100%"/>
+                            </td>
                             @else
                             <td class="tdth1 img-responsive"><img src="{{asset('images/nofoto.jpg')}}" width="100%"/></td>
 
@@ -53,6 +56,7 @@
                             @endif
 
                             <td class="tdth2" style="vertical-align:middle;">
+                            @if($user->role_id == '1')
                             <a href="{{route('users.edit',$user->id)}}" class="btn btn-warning">Editar</a>
                             <form method="POST" action="{{ url('/admin/users/'.$user->id) }}">
                                     {{ csrf_field() }}
@@ -61,6 +65,34 @@
                                     {{ __('Eliminar') }}
                                     </button>
                             </form>
+                            @elseif($user->role_id == '2')
+                            <a href="{{route('docentes.edit',$user->id)}}" class="btn btn-warning">Editar</a>
+                            <form method="POST" action="{{ url('/admin/docentes/'.$user->id) }}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" onclick="return confirm('BORRAR?');" class="btn btn-danger">
+                                    {{ __('Eliminar') }}
+                                    </button>
+                            </form>
+                            @elseif($user->role_id == '3')
+                            <a href="{{route('progenitores.edit',$user->id)}}" class="btn btn-warning">Editar</a>
+                            <form method="POST" action="{{ url('/admin/progenitores/'.$user->id) }}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" onclick="return confirm('BORRAR?');" class="btn btn-danger">
+                                    {{ __('Eliminar') }}
+                                    </button>
+                            </form>
+                            @elseif($user->role_id == '4')
+                            <a href="{{route('escolares.edit',$user->id)}}" class="btn btn-warning">Editar</a>
+                            <form method="POST" action="{{ url('/admin/escolares/'.$user->id) }}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" onclick="return confirm('BORRAR?');" class="btn btn-danger">
+                                    {{ __('Eliminar') }}
+                                    </button>
+                            </form>
+                            @endif
                             </td>
                         </tr>
                             @endforeach
@@ -71,6 +103,10 @@
         <div class="div" style="text-align:center;">
         <button type="button" class="btn btn-info" onclick="location.href='#arriba';">Ir arriba</button>
         </div>
+        @else
+        MENSAJE DE ERRROR ??? Devolver a la página anterior?
+        NO ESTáS REGISTRADO
+        @endif
         
 @endsection
 

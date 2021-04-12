@@ -18,7 +18,7 @@
         <div class="list-group sinfondo">
             <div class="panel-title" style="font-size:xx-large;;">Elige un rol.</div>
             <a href="{{url('usuarios/administrador')}}" class="list-group-item list-group-item-action card text-info text-center">Adminitrador</a>
-            <a href="{{url('usuarios/docente/')}}" class="list-group-item list-group-item-action card text-info text-center">Docente</a>
+            <a href="{{url('admin/docentes/')}}" class="list-group-item list-group-item-action card text-info text-center">Docente</a>
             <a href="{{url('usuarios/progenitor/')}}" class="list-group-item list-group-item-action card text-info text-center">Progenitor</a>
             <a href="{{url('usuarios/escolar/')}}" class="list-group-item list-group-item-action card text-info text-center">Escolar</a>
             

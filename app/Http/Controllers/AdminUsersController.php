@@ -18,22 +18,15 @@ class AdminUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-     
     
     public function index()
     {   
-
         /*$docentes = User::all();
 
         foreach ($docentes as $d)
             $usuarios[]= $d->docente;*/
 
         $usuarios = User::all();
-
-
-        
         return view('admin.users.index',compact('usuarios'));
     }
 
@@ -70,10 +63,7 @@ class AdminUsersController extends Controller
         return view('register.administrador');
     }
 
-    public function docente(){
-
-        return view('usuarios.docente');
-    }
+    
     public function progenitor(){
 
         return view('usuarios.progenitor');
@@ -205,11 +195,7 @@ class AdminUsersController extends Controller
     {
         //
         $user=User::findOrFail($id);
-
-        
-
         $entrada = $request->all();
-
         
         if($archivo=$request->file('foto_id')){
 
@@ -266,13 +252,6 @@ class AdminUsersController extends Controller
                 }
                     
             Progenitore::destroy($user->progenitore->id);
-            
-
-
-            
-                
-            
-
             
         }elseif($user->role->id == 4){
 

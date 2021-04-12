@@ -1,13 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Escolare;
-use App\Clase;
+use App\Foto;
+use App\Docente;
 use App\Item;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminDocentesController extends Controller
 {
@@ -18,8 +19,8 @@ class AdminDocentesController extends Controller
      */
     public function index()
     {
-
-        return view('admin.docentes.index');
+        //No la estamos usando,
+        return view('admin.docentes.create');
     }
 
     /**
@@ -29,7 +30,8 @@ class AdminDocentesController extends Controller
      */
     public function create()
     {
-        //
+            return view('admin.docentes.create');
+        
     }
 
     /**
@@ -40,6 +42,41 @@ class AdminDocentesController extends Controller
      */
     public function store(Request $request)
     {
+        $entrada = $request->all();
+
+        if($archivo=$request->file('foto_id')){
+
+            $nombre=$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $foto=Foto::create(['ruta_foto'=>$nombre]);
+            $entrada['foto_id']=$foto->id;
+
+            }else{
+                $entrada['foto_id'] = NULL;
+            }
+
+            User::create([
+                'nombre' => $request['nombre'],
+                'role_id' => $request['role_id'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'foto_id' => $entrada['foto_id'],
+                    ]);
+        
+                    $usuarios = User::all();
+                    $id = $usuarios->last()->id;
+            Docente::create([
+
+                'nombre' => $request['nombre'],
+                'email' => $request['email'],
+                'telefono' => $request['telefono'],
+                'user_id' => $id,
+        
+                    ]);
+
+            $usuarios = User::all();
+            return view('admin.users.index',compact('usuarios'));
+        
         //
     }
 
@@ -66,7 +103,9 @@ class AdminDocentesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+
+        return view('admin.docentes.edit',compact('usuario'));
     }
 
     /**
@@ -78,7 +117,26 @@ class AdminDocentesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user=User::findOrFail($id);
+
+        $entrada = $request->all();
+
+        if($archivo=$request->file('foto_id')){
+
+            $nombre=$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $foto=Foto::create(['ruta_foto'=>$nombre]);
+            $entrada['foto_id']=$foto->id;
+
+            }
+
+        $docente= Docente::findOrFail($user->docente->id);
+
+        $docente->update($entrada);
+        $user->update($entrada);
+        $usuarios = User::all();
+
+        return view('admin.users.index',compact('usuarios'));
     }
 
     /**
@@ -89,8 +147,10 @@ class AdminDocentesController extends Controller
      */
     public function destroy($id)
     {
+        /*Código para eliminar los items de un escolar 
+        y luego eliminar el escolar y el usuario devolviendo la vista home del docente
+        con sus clase. Donde lo reubico? Aquí es para eliminar a los docentes, de ahí su nombre.
         $items = Item::all();
-        
 
         foreach($items as $item){
             if($item->escolare_id == $id)
@@ -103,9 +163,13 @@ class AdminDocentesController extends Controller
 
         $clases = Auth::user()->docente->clase;
 
-        return view('home',compact('clases'));
-        
+        return view('home',compact('clases'));*/
+        $usuario = User::findOrFail($id);
+        Docente::destroy($usuario->docente->id);
+        User::destroy($id);
+        Foto::destroy($usuario->foto_id);
 
+        return view('home');
         //
     }
 }

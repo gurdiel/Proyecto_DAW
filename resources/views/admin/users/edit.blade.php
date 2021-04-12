@@ -26,7 +26,7 @@
                     <div class="form-group row justify-content-center">
                         <div class="col-md-4 justify-content-center">
                     @if($usuario->foto)
-                    <img src="{{$usuario->foto->ruta_foto}}" width="50%"/>
+                    <img src="../../../images/{{$usuario->foto->ruta_foto}}" width="50%"/>
                     @else <img src="{{asset('images/nofoto.jpg')}}" width="50%"/>
                     @endif
                         </div>
@@ -134,7 +134,7 @@
                                 onclick="if(this.value=='Abuelos,cuidador...') this.value=''" onblur="if(this.value=='') this.value='Abuelos,cuidador...'">
                             </div>
                         </div>
-                        @elseif($usuario->role_id == 3)
+                        <!--@elseif($usuario->role_id == 3)
                         <div class="card-header text-primary">EDITANDO...</div>
                 <div class="card-body">
                     <form method="POST" action="{{ url('/admin/users/'.$usuario->id) }}" enctype="multipart/form-data">
@@ -143,7 +143,7 @@
                     <div class="form-group row justify-content-center">
                         <div class="col-md-4 justify-content-center">
                     @if($usuario->foto)
-                    <img src="../../../images/{{$usuario->foto->ruta_foto}}" width="50%"/>
+                    <img src="../images/{{$usuario->foto->ruta_foto}}" width="50%"/>
                     @else <img src="{{asset('images/nofoto.jpg')}}" width="50%"/>
                     @endif
                         </div>
@@ -162,7 +162,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $usuario->docente->email }}" required autocomplete="email">
@@ -187,7 +187,7 @@
                             <div class="col-md-6 foto">
                                 <input id="foto_id" type="file" name="foto_id" accept="image/png, .jpeg, .jpg, image/gif">
                             </div>
-                        </div>
+                        </div>-->
                         @elseif($usuario->role_id == 4)
 
                         <div class="card-header text-primary">EDITANDO...</div>

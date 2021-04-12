@@ -21,6 +21,7 @@
 <div class="row">
 <div class="col">
 <div class="card-group">
+<div class="centrado">PRESENTACIÓN</div>
 <div class="row">
   <div class="card col-lg-4 col-xl-4">
     <img class="card-img-top" src="{{asset('images/gamificacion.jpg')}}" alt="Gamificación">

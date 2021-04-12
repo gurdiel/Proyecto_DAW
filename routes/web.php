@@ -26,7 +26,11 @@ Route::get('admin/users/vista', 'AdminUsersController@vista')->name('users.vista
 
 Route::resource('/admin/escolares','AdminEscolaresController');
 
-Route::resource('/admin/docentes','AdminDocentesController');
+Route::resource('/admin/progenitores','AdminProgenitoresController');
+
+Route::resource('/admin/items','AdminItemsController');
+
+Route::resource('/admin/docentes','AdminDocentesController');//solo usamos el show
 
 Route::resource('/admin/mensajes', 'AdminMensajesController');
 

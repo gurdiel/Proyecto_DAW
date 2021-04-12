@@ -7,6 +7,7 @@ use App\Escolare;
 use App\Clase;
 use App\User;
 use App\Item;
+use App\Foto;
 use Auth;
 
 class AdminEscolaresController extends Controller
@@ -19,6 +20,7 @@ class AdminEscolaresController extends Controller
     public function index()
     {
         //
+        return view('admin.docentes.edit');
     }
 
     /**
@@ -29,6 +31,7 @@ class AdminEscolaresController extends Controller
     public function create()
     {
         //
+        return view('admin.docentes.edit');
     }
 
     /**
@@ -41,7 +44,6 @@ class AdminEscolaresController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -50,15 +52,11 @@ class AdminEscolaresController extends Controller
      */
     public function show($id)
     {
-        //
         $alumnos = Escolare::all();
         $clase = Clase::findOrFail($id);
-
-        
+  
          return view('admin.escolares.index',compact('alumnos'),compact('clase'));
     }
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -67,14 +65,12 @@ class AdminEscolaresController extends Controller
      */
     public function edit($id)
     {
-        //
+ 
+        $user = User::findOrFail($id);
+        $escolar = Escolare::findOrFail($user->escolare->id);
+        $items = $escolar->item;
 
-        $usuario = Escolare::findOrFail($id);
-        $user = User::findOrFail($usuario->user_id);
-        $items = $usuario->item;
-
-            return view('admin.escolares.edit',compact('user'),compact('items'));
-
+        return view('admin.escolares.edit', compact('user'), compact('items'));
     }
 
     /**
@@ -112,13 +108,13 @@ class AdminEscolaresController extends Controller
             
         }
     }
-    
-
         $escolar->update($entrada);
 
-        $clases = Auth::user()->docente->clase;
+        //Aquí mostraba las clases del docente. Pero ahora muestra HOME.
+        //$clases = Auth::user()->docente->clase;
+        //return view('home',compact('clases'));
 
-        return view('home',compact('clases'));
+        return view('home');
     }
 
     /**
@@ -129,30 +125,18 @@ class AdminEscolaresController extends Controller
      */
     public function destroy($id)
     {   
-        $item  = Item::findOrFail($id);
-        $escolar = Escolare::findOrFail($item->escolare_id);
-
-
-        if($item->fotoitem_id == 1){
-            $entrada['puntos']=($escolar->puntos + 5);
-            $escolar->update($entrada);
-        }elseif($item->fotoitem_id == 2){
-            $entrada['puntos']=($escolar->puntos + 4);
-            $escolar->update($entrada);
-        }elseif($item->fotoitem_id == 3){
-            $entrada['puntos']=($escolar->puntos + 3);
-            $escolar->update($entrada);
-        }elseif($item->fotoitem_id == 4){
-            $entrada['puntos']=($escolar->puntos + 2);
-            $escolar->update($entrada);
+        $items = Item::all();
+        $usuario = User::findOrFail($id);
+        $escolar = Escolare::findOrFail($usuario->escolare->id);
+        foreach($items as $item){
+            if($item->escolare_id == $escolar->id)
+                Item::destroy($item->id);
         }
 
-        
-        
-        Item::destroy($id);
+        User::destroy($id);
+        Escolare::destroy($escolar->id);
+        Foto::destroy($usuario->foto_id);
 
-        $clases = Auth::user()->docente->clase;
-        return view('home',compact('clases'));
-        //
+        return view('home');
     }
 }

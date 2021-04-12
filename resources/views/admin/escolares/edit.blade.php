@@ -129,7 +129,7 @@
                                     <img src="../../../images/{{$item->fotoitem->ruta_foto}}" width="50%"/>
                                     </td>
                                     <td>
-                                    <form method="POST" action="{{ url('/admin/escolares/'.$item->id) }}">
+                                    <form method="POST" action="{{ url('/admin/items/'.$item->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" onclick="return confirm('¿Desea borrarlo?');" class="btn btn-warning">
