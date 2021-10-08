@@ -16,11 +16,8 @@ class CreateProgenitoresTable extends Migration
         Schema::create('progenitores', function (Blueprint $table) {
 
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('email');
             $table->string('fam_aut');
             $table->integer('user_id');
-            $table->integer('escolare_id');
             $table->timestamps();
             
         });

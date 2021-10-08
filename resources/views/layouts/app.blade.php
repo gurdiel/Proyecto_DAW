@@ -50,7 +50,7 @@
                         @yield('migasdepan')
                         @guest
                         <li class="nav-item">
-                                <a class="nav-link text-info" href="{{ route('register') }}">{{ __('Resgistrate') }}</a>
+                                <a class="nav-link text-info" href="{{ route('users.create') }}">{{ __('Resgistrate') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-info" href="{{ route('login') }}">{{ __('Acceso') }}</a>
@@ -58,7 +58,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-info" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Hola,{{ Auth::user()->nombre }} <span class="caret"></span>
+                                    Hola,{{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right text-info" aria-labelledby="navbarDropdown">

@@ -5,6 +5,9 @@
   <ol class="breadcrumb migas">
     
     <li class="breadcrumb-item active"><a href="{{ url('/home') }}">Inicio</a></li>
+    @if(Auth::user()->role_id == 1)
+    <li class="breadcrumb-item active"><a href="{{ url('/admin/users/vista') }}">Edición</a></li>
+    @endif
     <li class="breadcrumb-item" aria-current="page">Alumnos</li>
   </ol>
 </nav>
@@ -28,11 +31,23 @@
       </div>
       
       <div class="form-group row">
-        <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>
           <div class="col-md-6">
-            <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{$usuario->docente->nombre}}" required autocomplete="nombre" autofocus>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$usuario->name}}" required autocomplete="name" autofocus>
 
-            @error('nombre')
+            @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+          </div>
+      </div>
+      <div class="form-group row">
+        <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Apellido:') }}</label>
+          <div class="col-md-6">
+            <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{$usuario->lastname}}" required autocomplete="lastname" autofocus>
+
+            @error('lastname')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -41,10 +56,10 @@
       </div>
 
       <div class="form-group row">
-          <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+          <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo Electrónico') }}</label>
 
           <div class="col-md-6">
-              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $usuario->docente->email }}" required autocomplete="email">
+              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $usuario->email }}" required autocomplete="email">
 
               @error('email')
                   <span class="invalid-feedback" role="alert">

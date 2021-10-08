@@ -23,30 +23,32 @@
                     @endif
                     
                     @if(Auth::user()->role_id == 1)
-                    <spam class="text-success">Bienvenido, {{ Auth::user()->nombre }} que deseas hacer?</spam>
+                    <spam class="text-success">Bienvenido, {{ Auth::user()->name }} que deseas hacer?</spam>
                    
                     <div class="list-group grupo">
                         <a href="{{url('/admin/users/')}}" class="list-group-item list-group-item-action text-info card text-center">Listar usuarios</a>
                         <a href="{{url('admin/users/create')}}" class="list-group-item list-group-item-action text-info card text-center">Crear usuario</a>
                         <a href="{{url('admin/users/vista')}}" class="list-group-item list-group-item-action text-info card text-center">Modificar/Eliminar usuario</a>
+                        <a href="{{url('/admin/mensajes/')}}" class="list-group-item list-group-item-action text-info card text-center">Listar Mensajes</a>
+                        <a href="{{url('/admin/clases/')}}" class="list-group-item list-group-item-action text-info card text-center">Listar Clases</a>
                     </div>
                     
                     @elseif(Auth::user()->role_id == 2)
-                    <div class="container grupo pad">
-                            <div class="row pad">
 
+                    @if($clases)
+                        <div class="container grupo pad">
+                            <div class="row pad">
                                 <div class="col-2 text-info">
-                                    Nombre
+                                    Nombre:
                                 </div>
-                                <div class="col-4 text-info">
-                                    Horarios
-                                </div>
+                            <div class="col-4 text-info">
+                                    Horarios:
+                            </div>
                                 <div class="col-6 text-info">
                                     Opciones:
                                 </div>
-                            
                             </div>
-                        @if($clases)
+                        
                                 @foreach($clases as $clase)
                         
                             <div class="row pad">
@@ -58,19 +60,25 @@
                                     {{$clase->horarios}}
                                 </div>
                                 <div class="col-3">
-                                <a href="{{route('escolares.show', $clase->id)}}" class="list-group-item list-group-item-action list-group-item-danger peq">Ver Alumnos</a>
+                                    <a href="{{route('escolares.show', $clase->id)}}" class="list-group-item list-group-item-action list-group-item-danger peq">Ver Alumnos</a>
                                 </div>
                                 <div class="col-3">
-                                <a href="{{route('mensajes.show', $clase->id)}}" class="list-group-item list-group-item-action list-group-item-warning peq">Mensajes</a>
+                                    <a href="{{route('mensajes.show', $clase->id)}}" class="list-group-item list-group-item-action list-group-item-warning peq">Mensajes</a>
                                 </div>
-                                
                             </div>
-                           
                             @endforeach
+                        @else
+                            <div class="container grupo pad">
+                            <div class="row pad">
+                                <div class="col-8 text-info">
+                                    No tienes asignado ninguna clase. Asignar????....
+                                </div>
+                            </div>
+                            
                             @endif
                             </div>
                             @elseif(Auth::user()->role_id == 3)
-                            <spam class="text-success">Bienvenido, {{ Auth::user()->nombre }} que deseas hacer?</spam>
+                            <spam class="text-success">Bienvenido, {{ Auth::user()->name }} que deseas hacer?</spam>
                             <div class="container grupo">
                                 <div class="row">
                                     <div class="card-body">
@@ -80,7 +88,7 @@
                                 @if($hijos)
                                 @foreach($hijos as $hijo)
                                     <div class="container grupo">
-                                    <p class="text-info">Tu hijo {{$hijo->nombre}} va a la clase: {{$hijo->clase->nombre}}</p>
+                                    <p class="text-info">Tu hijo {{ $hijo->user->name }} va a la clase: {{$hijo->clase->nombre}}</p>
                                         <div class="row">
                                                 <div class="col-3">
                                                     <a href="{{route('mensajes.show', $hijo->clase->id)}}" class="list-group-item list-group-item-action list-group-item-info peq">Ver Mensajes</a>
@@ -97,7 +105,7 @@
                             
 
                             @elseif(Auth::user()->role_id == 4)
-                            <spam class="text-success">Bienvenido {{ Auth::user()->nombre }}! , aquí puedes ver tus logros.</spam>
+                            <spam class="text-success">Bienvenido {{ Auth::user()->name }}! , aquí puedes ver tus logros.</spam>
                         <div class="container grupo">
                             <div class="row">
                             </div>
@@ -122,7 +130,7 @@
                                                         <tbody>
                                                                     <tr>
                                                                         <td class="tdth1">{{$escolar->id}}</td>
-                                                                        <td class="tdth2">{{$escolar->nombre}}</td>
+                                                                        <td class="tdth2">{{$escolar->user->name}}</td>
                                                                         <td class="tdth1">{{$escolar->puntos}}</td>
                                                                         <td class="tdth2">
                                                                         @foreach($items as $item)

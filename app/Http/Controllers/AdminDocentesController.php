@@ -2,11 +2,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Clase;
 use App\Escolare;
 use App\Foto;
 use App\Docente;
 use App\Item;
 use App\User;
+use App\Mensaje;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,7 +32,7 @@ class AdminDocentesController extends Controller
      */
     public function create()
     {
-            return view('admin.docentes.create');
+            //return view('admin.docentes.create');
         
     }
 
@@ -56,7 +58,8 @@ class AdminDocentesController extends Controller
             }
 
             User::create([
-                'nombre' => $request['nombre'],
+                'name' => $request['name'],
+                'lastname'=> $request['lastname'],
                 'role_id' => $request['role_id'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
@@ -67,13 +70,12 @@ class AdminDocentesController extends Controller
                     $id = $usuarios->last()->id;
             Docente::create([
 
-                'nombre' => $request['nombre'],
-                'email' => $request['email'],
                 'telefono' => $request['telefono'],
                 'user_id' => $id,
         
                     ]);
 
+                
             $usuarios = User::all();
             return view('admin.users.index',compact('usuarios'));
         
@@ -164,7 +166,24 @@ class AdminDocentesController extends Controller
         $clases = Auth::user()->docente->clase;
 
         return view('home',compact('clases'));*/
+        
         $usuario = User::findOrFail($id);
+        $aulas = Clase::all();
+        $mensajes = Mensaje::all();
+
+            foreach($mensajes as $mensaje)
+
+                if($mensaje->user_id == $usuario->id)
+                    Mensaje::destroy($mensaje->id);
+                
+
+                foreach($aulas as $aula)
+            
+                    if($aula->docente_id == $usuario->docente->id){//Hacemos esto para poner a cero en la clase el docente
+                        $up['docente_id'] = 0;
+                        $aula->update($up);
+                    }
+
         Docente::destroy($usuario->docente->id);
         User::destroy($id);
         Foto::destroy($usuario->foto_id);

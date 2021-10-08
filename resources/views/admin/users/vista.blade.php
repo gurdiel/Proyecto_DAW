@@ -40,7 +40,17 @@
                             @endif
                             
                             <td class="tdth2">{{$user->role->nombre}}</td>
-                            <td class="tdth2"><a href="{{route('users.edit',$user->id)}}" class="text-success">{{$user->nombre}}</a></td>
+                            
+                            @if($user->role_id == '1')
+                            <td class="tdth2"><a href="{{route('users.edit',$user->id)}}" class="text-success">{{$user->name}}</a></td>
+                            @elseif($user->role_id == '2')
+                            <td class="tdth2"><a href="{{route('docentes.edit',$user->id)}}" class="text-success">{{$user->name}}</a></td>
+                            @elseif($user->role_id == '3')
+                            <td class="tdth2"><a href="{{route('progenitores.edit',$user->id)}}" class="text-success">{{$user->name}}</a></td>
+                            @elseif($user->role_id == '4')
+                            <td class="tdth2"><a href="{{route('escolares.edit',$user->id)}}" class="text-success">{{$user->name}}</a></td>
+                            @endif
+
                             <td>{{$user->email}}</td>
 
                             @if($user->role_id == '2')

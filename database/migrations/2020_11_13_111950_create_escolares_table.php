@@ -15,11 +15,9 @@ class CreateEscolaresTable extends Migration
     {
         Schema::create('escolares', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
             $table->integer('user_id');
             $table->integer('clase_id');
             $table->integer('puntos');
-            $table->string('items');
             $table->timestamps();
         });
     }

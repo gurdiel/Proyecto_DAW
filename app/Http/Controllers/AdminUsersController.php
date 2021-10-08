@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Clase;
 use App\User;
 use App\Foto;
 use App\Item;
@@ -63,25 +64,15 @@ class AdminUsersController extends Controller
         return view('register.administrador');
     }
 
-    
-    public function progenitor(){
-
-        return view('usuarios.progenitor');
-    }
-    public function escolar(){
-
-        return view('usuarios.escolar');
-    }
     public function administrador(){
 
-        return view('usuarios.administrador');
+        return view('admin.users.administrador');
     }
 
 
     public function store(Request $request)
     {     
         $entrada = $request->all();
-
         
         if($archivo=$request->file('foto_id')){
 
@@ -96,24 +87,21 @@ class AdminUsersController extends Controller
 
 
          User::create([
-        'nombre' => $request['nombre'],
-        'role_id' => $request['role_id'],
-        'email' => $request['email'],
-        'password' => Hash::make($request['password']),
-        'foto_id' => $entrada['foto_id'],
-            ]);
+            'name' => $request['nombre'],
+            'lastname' => $request['apellido'],
+            'role_id' => $request['role_id'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'foto_id' => $entrada['foto_id'],
+                 ]);
 
-            $usuarios = User::all();
-            $id = $usuarios->last()->id;
-             
-    
+        $usuarios = User::all();
+        $id = $usuarios->last()->id;
 
         if($request['role_id']==2){
 
             Docente::create([
 
-                'nombre' => $request['nombre'],
-                'email' => $request['email'],
                 'telefono' => $request['telefono'],
                 'user_id' => $id,
 
@@ -238,6 +226,15 @@ class AdminUsersController extends Controller
 
         if($user->role->id == 2){
 
+            $aulas = Clase::all();
+
+            foreach($aulas as $aula)
+
+                if($aula->docente_id == $user->docente->id){
+                    $up['docente_id'] = 0;
+                    $aula->update($up);
+                }
+
             Docente::destroy($user->docente->id);
             
         }elseif($user->role->id == 3){
@@ -245,7 +242,7 @@ class AdminUsersController extends Controller
 
             $escolares = Escolare::all();
 
-            foreach($escolares as $escolar)
+            foreach($escolares as $escolar) //Hacemos esto para poner a 0 el id del progenitor
                 if($escolar->progenitore_id == $user->progenitore->id){
                     $up['progenitore_id'] =  0;
                     $escolar->update($up);

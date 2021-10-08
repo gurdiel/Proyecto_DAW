@@ -15,7 +15,7 @@ class AddTelefonoToProgenitores extends Migration
     {
         Schema::table('progenitores', function (Blueprint $table) {
             //
-            $table->string('telefono')->after('email');
+            $table->string('telefono')->after('id');
         });
     }
 

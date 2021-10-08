@@ -10,7 +10,7 @@ class Docente extends Model
     //
     
     protected $fillable = [
-        'tipo', 'nombre','email', 'telefono', 'user_id'
+     'telefono', 'user_id'
     ];
 
     public function clase(){

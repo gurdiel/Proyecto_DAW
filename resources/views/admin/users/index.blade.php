@@ -12,6 +12,7 @@
 @endsection
 
 @section('contenido')
+        @if(Auth::user())
         @if(Auth::user()->role_id == 1)
         <div class="container-fluid pad peq2">        
         <div class="title-card text-success grande">Lista completa de usuarios registrados</div>
@@ -24,7 +25,7 @@
                             <th class="tdth2" scope="col">Nombre</th>
                             <th scope="col">Email</th>
                             <th class="tdth2" scope="col">Teléfono</th>
-                            <th class="tdth2" scope="col">Teléfono</th>
+                            <th class="tdth2" scope="col">Acciones</th>
                         </tr>
                         <tbody>
                         @if($usuarios)
@@ -42,7 +43,7 @@
 
                             @endif
                             <td class="tdth2" style="vertical-align:middle;">{{$user->role->nombre}}</td>
-                            <td class="tdth2" style="vertical-align:middle;">{{$user->nombre}}</td>
+                            <td class="tdth2" style="vertical-align:middle;">{{$user->name}}<br>{{$user->lastname}}</td>
                             <td style="vertical-align:middle;">{{$user->email}}</td>
 
                             @if($user->role_id == '2')
@@ -106,6 +107,9 @@
         @else
         MENSAJE DE ERRROR ??? Devolver a la página anterior?
         NO ESTáS REGISTRADO
+        @endif
+        @else
+        Accede a tu área personal. O podemos poner esto en otra vista.
         @endif
         
 @endsection

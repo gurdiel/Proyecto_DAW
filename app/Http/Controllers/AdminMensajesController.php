@@ -17,7 +17,10 @@ class AdminMensajesController extends Controller
      */
     public function index()
     {
-        //
+        $clases = Clase::all();
+
+        return view('admin.mensajes.vista', compact('clases'));
+        
     }
 
     /**
@@ -42,7 +45,7 @@ class AdminMensajesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         Mensaje::create([
             'titulo' => $request['titulo'],
             'mensaje' => $request['mensaje'],

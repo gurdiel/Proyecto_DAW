@@ -14,17 +14,17 @@
 @section('contenido')
 <div class="container">
     <div class="row justify-content-center">
-    <p>Estos son los alumnos del {{$clase->nombre}}</p>
+    <p>Estos son los alumnos del {{$clase->nombre}}</p> 
         <div class="col-md-10">
         
         <table class="table table-hover">
 
                         <tr>
-                            <th class="tdth1" scope="col">ID Clase</th>
+                            <th class="tdth2" scope="col">ID Clase</th>
                             <th class="tdth2" scope="col">Nombre</th>
                             <th class="tdth1" scope="col">Pts.</th>
                             <th class="tdth2" scope="col">Items</th>
-                            <th class="tdth1" scope="col">User</th>
+                            <th class="tdth2" scope="col">Núm. Usuario</th>
                             <th class="tdth2" scope="col">Opciones</th>
                         </tr>
                         <tbody>
@@ -34,18 +34,19 @@
 
                                     <tr>
                                         <td class="tdth1">{{$alumno->id}}</td>
-                                        <td class="tdth2">{{$alumno->nombre}}</td>
+                                        <td class="tdth2">{{$alumno->user->name}}</td>
                                         <td class="tdth1">{{$alumno->puntos}}</td>
                                         <td class="tdth2">
                                         @foreach($alumno->item as $items)
-                                        {{$items->fotoitem_id}}
+                                        
+                                        <img src="../../images/{{$items->fotoitem->ruta_foto}}" width="30%"/></div>
                                         @endforeach
                                         
                                         </td>
 
                                         <td class="tdth1">{{$alumno->user_id}}</td>
                                         <td class="tdth2" style="vertical-align:middle;">
-                            <a href="{{route('escolares.edit',$alumno->id)}}" class="btn btn-warning">Editar</a>
+                            <a href="{{route('escolares.edit',$alumno->user_id)}}" class="btn btn-warning">Editar</a>
                             <form method="POST" action="{{ url('/admin/docentes/'.$alumno->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
@@ -61,6 +62,10 @@
                         @endif
                         </tbody>
         </table>
+
+            <div class="d-flex justify-content-center pad">
+                <a href="{{route('escolares.create',$clase->id)}}" class="card-link bg-success text-dark">Añadir Escolar</a>
+            </div>
         </div>
     </div>
 </div>

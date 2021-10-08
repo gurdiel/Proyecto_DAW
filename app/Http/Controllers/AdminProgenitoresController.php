@@ -7,6 +7,7 @@ use App\User;
 use App\Progenitore;
 use App\Escolare;
 use App\Foto;
+use Illuminate\Support\Facades\Hash;
 
 class AdminProgenitoresController extends Controller
 {
@@ -17,7 +18,7 @@ class AdminProgenitoresController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.progenitores.create');
     }
 
     /**
@@ -38,7 +39,42 @@ class AdminProgenitoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entrada = $request->all();
+
+        if($archivo=$request->file('foto_id')){
+
+            $nombre=$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $foto=Foto::create(['ruta_foto'=>$nombre]);
+            $entrada['foto_id']=$foto->id;
+
+            }else{
+                $entrada['foto_id'] = NULL;
+            }
+
+            User::create([
+                'name' => $request['name'],
+                'lastname'=> $request['lastname'],
+                'role_id' => $request['role_id'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'foto_id' => $entrada['foto_id'],
+                    ]);
+        
+                    $usuarios = User::all();
+                    $id = $usuarios->last()->id;
+                    $escolareid = 0;
+            Progenitore::create([
+
+                'telefono' => $request['telefono'],
+                'fam_aut' => $request['fam_aut'],
+                'user_id' => $id,
+        
+                    ]);
+
+                
+            $usuarios = User::all();
+            return view('admin.users.index',compact('usuarios'));
     }
 
     /**

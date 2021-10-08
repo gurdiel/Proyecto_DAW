@@ -8,7 +8,7 @@ class Progenitore extends Model
 {
     
     protected $fillable = [
-        'nombre','email','telefono', 'fam_aut', 'user_id', 
+        'telefono', 'fam_aut', 'user_id',
     ];
     //
     public function escolare(){

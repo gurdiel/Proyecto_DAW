@@ -104,9 +104,8 @@ class AdminItemsController extends Controller
         
         Item::destroy($id);
 
-        //$clases = Auth::user()->docente->clase;
+        $clases = Auth::user()->docente->clase;
 
-        //return view('home',compact('clases'));
-        return view('home');
+        return view('home',compact('clases'));
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Escolare extends Model
 {
     protected $fillable = [
-        'nombre', 'user_id','clase_id', 'puntos','progenitore_id',
+        'user_id','clase_id', 'puntos','progenitore_id',
     ];
 
     public function clase(){
@@ -25,7 +25,10 @@ class Escolare extends Model
     }
     
     */
-    
+    public function user(){
+
+        return $this->belongsTo("App\User");
+    }
 
     public function item(){
 

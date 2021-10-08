@@ -10,6 +10,8 @@ use App\Item;
 use App\Foto;
 use Auth;
 
+use Illuminate\Support\Facades\Hash;
+
 class AdminEscolaresController extends Controller
 {
     /**
@@ -20,7 +22,7 @@ class AdminEscolaresController extends Controller
     public function index()
     {
         //
-        return view('admin.docentes.edit');
+        return view('admin.escolares.create');
     }
 
     /**
@@ -31,7 +33,16 @@ class AdminEscolaresController extends Controller
     public function create()
     {
         //
-        return view('admin.docentes.edit');
+        return view('admin.escolares.create');//Aquí hay q cambiar la vista pero no sé donde dejará de funcionar.
+    }
+    public function createConAula($claseid)
+
+    {
+        //
+        $clase = Clase::findOrFail($claseid);
+
+
+        return view('admin.escolares.create',compact('clase'));//Aquí hay q cambiar la vista pero no sé donde dejará de funcionar.
     }
 
     /**
@@ -42,7 +53,52 @@ class AdminEscolaresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entrada = $request->all();
+        
+        if($archivo=$request->file('foto_id')){
+
+            $nombre=$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $foto=Foto::create(['ruta_foto'=>$nombre]);
+            $entrada['foto_id']=$foto->id;
+
+            }else{
+                $entrada['foto_id'] = NULL;
+            }
+        User::create([
+                'name' => $request['name'],
+                'lastname' => $request['lastname'],
+                'role_id' => $request['role_id'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'foto_id' => $entrada['foto_id'],
+                     ]);
+    
+        $usuarios = User::all();
+        $id = $usuarios->last()->id;
+        
+        Escolare::create([
+
+            'user_id' => $id,
+            'clase_id' => $request['clase_id'],
+            'puntos' => 0,
+            'progenitore_id' => $request['progenitore_id'],
+
+            
+        ]);
+        //Diferenciamos cuando creamos con admin o cuando creamos desde una clase con profesor.
+        if(Auth::user()->role_id == 1){
+
+            $usuarios = User::all();
+            return view('admin.users.index',compact('usuarios'));
+
+        }else{ 
+
+            $clases = Auth::user()->docente->clase;
+            return view('home',compact('clases'));
+        }
+
+
     }
     /**
      * Display the specified resource.
@@ -54,6 +110,7 @@ class AdminEscolaresController extends Controller
     {
         $alumnos = Escolare::all();
         $clase = Clase::findOrFail($id);
+        
   
          return view('admin.escolares.index',compact('alumnos'),compact('clase'));
     }
@@ -84,7 +141,18 @@ class AdminEscolaresController extends Controller
     {
         //
         $escolar= Escolare::findOrFail($id);
+        $user = User::findOrFail($escolar->user_id);
+
         $entrada = $request->all();
+
+        if($archivo=$request->file('foto_id')){
+
+            $nombre=$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $foto=Foto::create(['ruta_foto'=>$nombre]);
+            $entrada['foto_id']=$foto->id;
+
+            }
 
         if($request['heroe']!= ''){
         Item::create([
@@ -109,12 +177,13 @@ class AdminEscolaresController extends Controller
         }
     }
         $escolar->update($entrada);
+        $user->update($entrada);
 
         //Aquí mostraba las clases del docente. Pero ahora muestra HOME.
-        //$clases = Auth::user()->docente->clase;
-        //return view('home',compact('clases'));
+        $clases = Auth::user()->docente->clase;
+        return view('home',compact('clases'));
 
-        return view('home');
+        //return view('home');
     }
 
     /**

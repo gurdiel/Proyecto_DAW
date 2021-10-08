@@ -46,7 +46,7 @@ class HomeController extends Controller
             return view('home',compact('escolar'),compact('items'));
             
         }
-        
+    
         
         return view('home');
     }

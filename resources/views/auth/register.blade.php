@@ -16,11 +16,11 @@
   <div class="row justify-content-center">
     <div class="col-8">
         <div class="list-group">
-        <div class="panel-title" style="font-size:xx-large;">Elige un rol:</div>
-      
-            <a href="{{url('register/docente/')}}" class="list-group-item list-group-item-action card text-info text-center text-center">Docente</a>
-            <a href="{{url('register/progenitor/')}}" class="list-group-item list-group-item-action card text-info text-center">Progenitor</a>
-            <a href="{{url('register/escolar/')}}" class="list-group-item list-group-item-action card text-info text-center">Escolar</a>
+        <div class="panel-title" style="font-size:xx-large;">Elige tu rol:</div>
+            <!--{{url('register/docente/')}}-->
+            <a href="{{url('admin/docentes/')}}" class="list-group-item list-group-item-action card text-info text-center text-center">Docente</a>
+            <a href="{{url('admin/progenitores/')}}" class="list-group-item list-group-item-action card text-info text-center">Progenitor</a>
+            <a href="{{url('admin/escolares/')}}" class="list-group-item list-group-item-action card text-info text-center">Escolar</a>
         </div>
     </div>
   </div>

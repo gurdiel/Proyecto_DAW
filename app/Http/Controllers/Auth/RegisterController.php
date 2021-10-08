@@ -79,8 +79,10 @@ class RegisterController extends Controller
             }
 
         User::create([
-            'nombre' => $data['nombre'],
+
             'role_id' => $data['role_id'],
+            'name' => $data['nombre'],
+            'lastname' => $data['apellido'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'foto_id' => $data['foto_id'],
@@ -91,23 +93,10 @@ class RegisterController extends Controller
         $id = $ultimo->id;
     
 
-        if($data['role_id']==2){
-
-            Docente::create([
-
-                'nombre' => $data['nombre'],
-                'email' => $data['email'],
-                'telefono' => $data['telefono'],
-                'user_id' => $id,
-
-            ]);
-
-
-        }elseif($data['role_id']==3){
+        if($data['role_id']==3){
 
             Progenitore::create([
-                'nombre' => $data['nombre'],
-                'email' => $data['email'],
+
                 'telefono' => $data['telefono'],
                 'fam_aut' => $data['fam_aut'],
                 'user_id' => $id,
@@ -118,7 +107,6 @@ class RegisterController extends Controller
 
             Escolare::create([
 
-                'nombre' => $data['nombre'],
                 'user_id' => $id,
                 'clase_id' => $data['clase_id'],
                 'puntos' => 0,

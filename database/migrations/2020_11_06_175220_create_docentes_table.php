@@ -15,9 +15,6 @@ class CreateDocentesTable extends Migration
     {
         Schema::create('docentes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo')->default('Docente');
-            $table->string('nombre');
-            $table->string('email');
             $table->string('telefono');
             $table->integer('user_id');
             $table->timestamps();
