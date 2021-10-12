@@ -97,6 +97,7 @@
                                 <button type="submit" class="btn btn-success text-dark">
                                     {{ __('Registrar') }}
                                 </button>
+                                <button type="button" class="btn btn-info" onclick="location.href='{{url()->previous()}}';">Atrás</button>
                             </div>
                         </div>
                     </form>

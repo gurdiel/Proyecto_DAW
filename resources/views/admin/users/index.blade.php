@@ -15,10 +15,10 @@
         @if(Auth::user())
         @if(Auth::user()->role_id == 1)
         <div class="container-fluid pad peq2">        
-        <div class="title-card text-success grande">Lista completa de usuarios registrados</div>
+        <div class="title-card text-light grande">Lista completa de usuarios registrados</div>
                         <table class="table table-hover pad">
 
-                        <tr class="text-info">
+                        <tr class="text-success">
                             <th class="tdth1" scope="col">Id</th>
                             <th class="tdth1" scope="col">Foto</th>
                             <th class="tdth2" scope="col">Tipo</th>
@@ -30,7 +30,7 @@
                         <tbody>
                         @if($usuarios)
                             @foreach($usuarios as $user)
-
+                        @if($user->id != 1)
                         <tr>
                             <td class="tdth1" style="vertical-align:middle;">{{$user->id}}</td>
                             @if($user->foto)
@@ -62,7 +62,7 @@
                             <form method="POST" action="{{ url('/admin/users/'.$user->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" onclick="return confirm('BORRAR?');" class="btn btn-danger">
+                                    <button type="submit" onclick="return confirm('¿Seguro desea borrar este elemento?');" class="btn btn-danger">
                                     {{ __('Eliminar') }}
                                     </button>
                             </form>
@@ -71,7 +71,7 @@
                             <form method="POST" action="{{ url('/admin/docentes/'.$user->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" onclick="return confirm('BORRAR?');" class="btn btn-danger">
+                                    <button type="submit" onclick="return confirm('¿Seguro desea borrar este elemento?');" class="btn btn-danger">
                                     {{ __('Eliminar') }}
                                     </button>
                             </form>
@@ -80,7 +80,7 @@
                             <form method="POST" action="{{ url('/admin/progenitores/'.$user->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" onclick="return confirm('BORRAR?');" class="btn btn-danger">
+                                    <button type="submit" onclick="return confirm('¿Seguro desea borrar este elemento?');" class="btn btn-danger">
                                     {{ __('Eliminar') }}
                                     </button>
                             </form>
@@ -89,13 +89,14 @@
                             <form method="POST" action="{{ url('/admin/escolares/'.$user->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" onclick="return confirm('BORRAR?');" class="btn btn-danger">
+                                    <button type="submit" onclick="return confirm('¿Seguro desea borrar este elemento?');" class="btn btn-danger">
                                     {{ __('Eliminar') }}
                                     </button>
                             </form>
                             @endif
                             </td>
                         </tr>
+                        @endif
                             @endforeach
                         @endif
                         </tbody>
@@ -103,6 +104,7 @@
         </div>
         <div class="div" style="text-align:center;">
         <button type="button" class="btn btn-info" onclick="location.href='#arriba';">Ir arriba</button>
+        <button type="button" class="btn btn-info" onclick="location.href='{{ url()->previous() }}';">Atrás</button>
         </div>
         @else
         MENSAJE DE ERRROR ??? Devolver a la página anterior?

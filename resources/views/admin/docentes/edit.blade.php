@@ -6,7 +6,7 @@
     
     <li class="breadcrumb-item active"><a href="{{ url('/home') }}">Inicio</a></li>
     @if(Auth::user()->role_id == 1)
-    <li class="breadcrumb-item active"><a href="{{ url('/admin/users/vista') }}">Edición</a></li>
+    <li class="breadcrumb-item active"><a href="{{ url('/admin/users') }}">Listado</a></li>
     @endif
     <li class="breadcrumb-item" aria-current="page">Alumnos</li>
   </ol>
@@ -87,6 +87,7 @@
               <button type="submit" class="btn btn-warning">
                   {{ __('Confirmar edición') }}
               </button>
+              <button type="button" class="btn btn-info" onclick="location.href='{{url()->previous()}}';">Atrás</button>
           </div>
       </div>
     </form>

@@ -20,9 +20,9 @@ class AdminDocentesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         //No la estamos usando,
-        return view('admin.docentes.create');
+        //return view('admin.docentes.create');
     }
 
     /**
@@ -32,7 +32,7 @@ class AdminDocentesController extends Controller
      */
     public function create()
     {
-            //return view('admin.docentes.create');
+            return view('admin.docentes.create');
         
     }
 

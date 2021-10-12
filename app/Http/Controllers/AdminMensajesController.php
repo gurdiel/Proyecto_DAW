@@ -30,7 +30,7 @@ class AdminMensajesController extends Controller
      */
     public function create($id)
     {
-        //
+        // 
 
         return view('admin.mensajes.create', compact('id'));
         
@@ -51,7 +51,7 @@ class AdminMensajesController extends Controller
             'mensaje' => $request['mensaje'],
             'user_id' => $request['user_id'],
             'clase_id' => $request['clase_id'],
-                ]);
+                ]); 
             $mensajes=Mensaje::all();
             $clase =Clase::find($request['clase_id']);
         

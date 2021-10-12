@@ -18,7 +18,7 @@ class AdminProgenitoresController extends Controller
      */
     public function index()
     {
-        return view('admin.progenitores.create');
+        //return view('admin.progenitores.create');
     }
 
     /**
@@ -29,6 +29,7 @@ class AdminProgenitoresController extends Controller
     public function create()
     {
         //
+        return view('admin.progenitores.create');
     }
 
     /**
@@ -153,7 +154,11 @@ class AdminProgenitoresController extends Controller
         User::destroy($id);
         Foto::destroy($user->foto_id);
 
-        $usuarios = User::all();
+        /*$usuarios = User::all();
         return view('admin.users.index',compact('usuarios'));
+        Mejor devolvemos la vista, del menú con todas las opciones.
+        */
+
+        return view('home');
     }
 }

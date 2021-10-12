@@ -19,7 +19,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">NUEVO MENSAJE</div>
+                <div class="card-header text-warning">NUEVO MENSAJE</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('admin/mensajes') }}">
@@ -67,8 +67,9 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    ENVIAR
+                                    Enviar
                                 </button>
+                                <button type="button" class="btn btn-primary" onclick="location.href='{{url('/admin/mensajes', $id)}}';">Atrás</button>
                             </div>
                         </div>
                     </form>
@@ -77,7 +78,5 @@
         </div>
     </div>
 </div>
-<p>NUEVO MENSAJES</p>
-{{$id}}
 
 @endsection

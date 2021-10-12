@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header text-info">Panel de control del {{Auth::user()->role->nombre}}</div>
+                <div class="card-header text-warning text-center"><h2>Panel de control del {{Auth::user()->role->nombre}}</h2></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -35,7 +35,7 @@
                     
                     @elseif(Auth::user()->role_id == 2)
 
-                    @if($clases)
+                    @if(count($clases) !=0)
                         <div class="container grupo pad">
                             <div class="row pad">
                                 <div class="col-2 text-info">
@@ -67,26 +67,34 @@
                                 </div>
                             </div>
                             @endforeach
-                        @else
+                            @else
+                                <div class="container grupo pad">
+                            <div class="row pad">
+                                <div class="col-12 text-info">
+                                    <div class="d-flex justify-content-center pad">
+                                        <p class="text-warning">No tiene clase. Puede empezar a crear su clase...</p>
+                                    </div>
+                                </div>
+                            </div>
+                                @endif
                             <div class="container grupo pad">
                             <div class="row pad">
-                                <div class="col-8 text-info">
-                                    No tienes asignado ninguna clase. Asignar????....
+                                <div class="col-12 text-info">
+                                    <div class="d-flex justify-content-center pad">
+                                        <a href="{{route('clases.create')}}" class="btn btn-success text-dark">Nueva Clase</a>
+                                    </div>
                                 </div>
                             </div>
                             
-                            @endif
+                            
+                        
                             </div>
                             @elseif(Auth::user()->role_id == 3)
-                            <spam class="text-success">Bienvenido, {{ Auth::user()->name }} que deseas hacer?</spam>
-                            <div class="container grupo">
-                                <div class="row">
-                                    <div class="card-body">
-
-                                    </div>
-                                </div>
-                                @if($hijos)
-                                @foreach($hijos as $hijo)
+                            <spam class="text-success">Bienvenido, {{ Auth::user()->name }}:</spam>
+                            
+                                @if(count($hijos) !=0)
+                                    @foreach($hijos as $hijo)
+                                    
                                     <div class="container grupo">
                                     <p class="text-info">Tu hijo {{ $hijo->user->name }} va a la clase: {{$hijo->clase->nombre}}</p>
                                         <div class="row">
@@ -99,8 +107,18 @@
                                             
                                         </div>
                                     </div>
-                                @endforeach
+                                    @endforeach
+                                @else
+                                <div class="container grupo pad">
+                            <div class="row pad">
+                                <div class="col-12 text-info">
+                                    <div class="d-flex justify-content-center pad">
+                                        <p class="text-warning">No tiene asignado ningún alumno. Espere que desde el centro creen el perfil.</p>
+                                    </div>
+                                </div>
+                            </div>
                                 @endif
+                                                      
 
                             
 

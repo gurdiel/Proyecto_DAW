@@ -52,7 +52,9 @@
 
 @if(Route::has('login'))
     @auth
-    <a class="text-success" href="{{ url('/home') }}"><p class="text-success" style="text-align:center">ENTRAR</a>
+        <div class="div" style="text-align:center;padding-top:1%;">
+        <button type="button" class="btn btn-danger" onclick="location.href='{{url('/home')}}';">Entrar</button>
+        </div>
     @endif
     @endauth
 

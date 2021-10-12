@@ -11,13 +11,13 @@
 </nav>
 
 @endsection
-
+ 
 @section('contenido')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-info">{{ __('Editando clase: ')  }}{{$clase->nombre}}</div>
+                <div class="card-header text-warning">{{ __('Editando clase: ')  }}{{$clase->nombre}}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{url('admin/clases/'.$clase->id)}}" enctype="multipart/form-data">
@@ -80,6 +80,7 @@
                                 <button type="submit" class="btn btn-success text-dark">
                                     {{ __('Confirmar Edición') }}
                                 </button>
+                                <button type="button" class="btn btn-info" onclick="location.href='{{url('/admin/clases')}}';">Atrás</button>
                             </div>
                         </div>
                     </form>

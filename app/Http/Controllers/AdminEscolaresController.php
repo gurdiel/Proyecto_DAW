@@ -22,7 +22,7 @@ class AdminEscolaresController extends Controller
     public function index()
     {
         //
-        return view('admin.escolares.create');
+        //return view('admin.escolares.create');
     }
 
     /**
@@ -41,7 +41,7 @@ class AdminEscolaresController extends Controller
         //
         $clase = Clase::findOrFail($claseid);
 
-
+        //a ver que pasa aquí cuando creemos desde el perfil profesor.
         return view('admin.escolares.create',compact('clase'));//Aquí hay q cambiar la vista pero no sé donde dejará de funcionar.
     }
 
@@ -85,7 +85,7 @@ class AdminEscolaresController extends Controller
             'progenitore_id' => $request['progenitore_id'],
 
             
-        ]);
+        ]); 
         //Diferenciamos cuando creamos con admin o cuando creamos desde una clase con profesor.
         if(Auth::user()->role_id == 1){
 
@@ -108,6 +108,7 @@ class AdminEscolaresController extends Controller
      */
     public function show($id)
     {
+        //Mostramos los alumnos por el aula que pasamos por parámetro.
         $alumnos = Escolare::all();
         $clase = Clase::findOrFail($id);
         

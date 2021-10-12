@@ -68,7 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
-
+        /*
         if($archivo=$data['foto_id']){
 
             $nombre=$archivo->getClientOriginalName();
@@ -117,6 +117,7 @@ class RegisterController extends Controller
             ]);
 
         }
+        No usamos nada.*/
         return $ultimo;        
     }
 }

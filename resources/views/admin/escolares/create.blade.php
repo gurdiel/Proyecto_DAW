@@ -7,7 +7,10 @@
     <li class="breadcrumb-item active"><a href="{{ url('/home') }}">Inicio</a></li>
     @if(Auth::user()->role_id == 1)
     <li class="breadcrumb-item active"><a href="{{ url('/admin/users/create') }}">Menu</a></li>
+    @elseif(Auth::user()->role_id == 2)
+    <li class="breadcrumb-item active"><a href="{{route('escolares.show', $clase->id)}}">Aula,{{$clase->id}}</a></li>
     @endif
+
     <li class="breadcrumb-item" aria-current="page">Crear Escolar</li>
   </ol>
 </nav>
@@ -19,7 +22,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-info">{{ __('Nuevo Escolar') }}</div>
+                <div class="card-header text-warning">{{ __('Nuevo Escolar') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{url('admin/escolares')}}" enctype="multipart/form-data">
@@ -132,6 +135,7 @@
                                 <button type="submit" class="btn btn-success text-dark">
                                     {{ __('Registrar') }}
                                 </button>
+                                <button type="button" class="btn btn-info" onclick="location.href='{{url()->previous()}}';">Atrás</button>
                             </div>
                         </div>
                     </form>

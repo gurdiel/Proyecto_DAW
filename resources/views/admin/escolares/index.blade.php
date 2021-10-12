@@ -14,12 +14,12 @@
 @section('contenido')
 <div class="container">
     <div class="row justify-content-center">
-    <p>Estos son los alumnos del {{$clase->nombre}}</p> 
+    <p class="grande text-warning">Estos son los alumnos del {{$clase->nombre}}</p> 
         <div class="col-md-10">
         
         <table class="table table-hover">
 
-                        <tr>
+                        <tr class="text-info">
                             <th class="tdth2" scope="col">ID Clase</th>
                             <th class="tdth2" scope="col">Nombre</th>
                             <th class="tdth1" scope="col">Pts.</th>
@@ -28,7 +28,7 @@
                             <th class="tdth2" scope="col">Opciones</th>
                         </tr>
                         <tbody>
-                        @if($alumnos)
+                        @if($alumnos) 
                             @foreach($alumnos as $alumno)
                                 @if($alumno->clase_id == $clase->id)
 
@@ -50,7 +50,7 @@
                             <form method="POST" action="{{ url('/admin/docentes/'.$alumno->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" onclick="return confirm('BORRAR?');" class="btn btn-danger">
+                                    <button type="submit" onclick="return confirm('¿Desea borrar el elemento?');" class="btn btn-danger">
                                     {{ __('Eliminar') }}
                                 </button>
                             </form>
@@ -64,7 +64,8 @@
         </table>
 
             <div class="d-flex justify-content-center pad">
-                <a href="{{route('escolares.create',$clase->id)}}" class="card-link bg-success text-dark">Añadir Escolar</a>
+                <a href="{{route('escolares.create',$clase->id)}}" class="btn btn-success text-dark">Añadir Escolar</a>&nbsp
+                <button type="button" class="btn btn-info" onclick="location.href='{{url('/home')}}';">Atrás</button>
             </div>
         </div>
     </div>

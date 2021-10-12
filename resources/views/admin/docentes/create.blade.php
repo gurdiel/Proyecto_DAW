@@ -17,7 +17,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-info">{{ __('Nuevo Docente') }}</div>
+                <div class="card-header text-warning">{{ __('Nuevo Docente') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{url('admin/docentes')}}" enctype="multipart/form-data">
@@ -116,6 +116,7 @@
                                 <button type="submit" class="btn btn-success text-dark">
                                     {{ __('Registrar') }}
                                 </button>
+                                <button type="button" class="btn btn-info" onclick="location.href='{{url()->previous()}}';">Atrás</button>
                             </div>
                         </div>
                     </form>

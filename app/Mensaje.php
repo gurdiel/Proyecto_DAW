@@ -11,5 +11,10 @@ class Mensaje extends Model
         'titulo','mensaje','user_id','clase_id',
     ];
 
+    public function user(){
+
+        return $this->belongsTo("App\User");
+    }
+
     //
 }
