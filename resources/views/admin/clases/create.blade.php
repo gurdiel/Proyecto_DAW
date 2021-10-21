@@ -29,7 +29,7 @@
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
+                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" maxlength="4" required pattern="\d\s[A-Z]+" autofocus>
 
                                 @error('nombre')
                                     <span class="invalid-feedback" role="alert">
@@ -43,6 +43,19 @@
 
                             <div class="col-md-6">
                                 <input id="horarios" type="text" class="form-control @error('horarios') is-invalid @enderror" name="horarios" value="{{ old('horarios') }}" required autocomplete="horarios" autofocus>
+
+                                @error('horarios')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="horario_id" class="col-md-4 col-form-label text-md-right">{{ __('Horarios:') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="horario_id" type="file" accept="application/pdf" class="form-control @error('horarios') is-invalid @enderror" name="horario_id" value="{{ old('horarios') }}" required autocomplete="horarios" autofocus>
 
                                 @error('horarios')
                                     <span class="invalid-feedback" role="alert">

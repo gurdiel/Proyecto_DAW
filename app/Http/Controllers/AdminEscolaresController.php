@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Progenitore;
 use App\Escolare;
 use App\Clase;
 use App\User;
@@ -32,8 +33,10 @@ class AdminEscolaresController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.escolares.create');//Aquí hay q cambiar la vista pero no sé donde dejará de funcionar.
+        $clases = Clase::all();
+        $progenitores = Progenitore::all();
+
+        return view('admin.escolares.create',compact('clases'),compact('progenitores'));
     }
     public function createConAula($claseid)
 

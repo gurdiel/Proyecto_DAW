@@ -19,6 +19,8 @@ class CreateClasesTable extends Migration
             $table->text('horarios');
             $table->text('anuncios');
             $table->integer('docente_id');
+            $table->integer('horario_id');
+
             $table->timestamps();
         });
     }

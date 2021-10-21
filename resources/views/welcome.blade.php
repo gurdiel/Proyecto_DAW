@@ -7,7 +7,7 @@
     <li class="breadcrumb-item" aria-current="page">Principal</li>
     @if(Route::has('login'))
     @auth
-    <li class="breadcrumb-item active">
+    <li class="breadcrumb-item active nosub">
     <a href="{{ url('/home') }}">Inicio</a></li>
     @endif
     @endauth

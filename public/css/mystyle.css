@@ -1,3 +1,4 @@
+/*Tamaño, estilo y color de las letras de la página. Fondo de pantalla.*/
 body, html {
 
     font-family: tizaMinusculas;
@@ -5,43 +6,54 @@ body, html {
     color: white;
     height: 100%;
     background-repeat: no-repeat;
-    background: url(../images/tablero.JPG) no-repeat center center fixed;
+    background: url("../images/tablero.jpg") no-repeat center center fixed;
     background-size: 100% 100%;
-    
-    
 }
 
+/*Barra de navegación fija efecto marron como el marco.*/
+.bgNav{
+    background-color: #8F4721;
+    height: 42px;
+}
+
+/*Separación manual top*/
 .padtop{
 
-    padding-top: 0;
-    margin-top: 0;
+    padding-top: 25px;
+    margin-top: 0px;
 }
 
+/*breadcrumb transparente*/
 .migas{
     font-size: medium;
     background-color: unset;
 }
 
+/*Lineado para los mensajes.*/
 .lineado{
     line-height: 2em;
 }
 
+/*Otro pad para separado superior*/
 .pad{
-    padding-top: 20px;
+    padding-top: 50px;
 }
-table{
 
+/*Anchura, margen superior y layout fijo para tablas.*/
+table{
     padding-top: 20px;
     table-layout: fixed;
     width: 1200px;
 }
 
+/*Palabras en espacios pequeños borde nego y ancho de 100px */
 th, td {
     border: 1px solid black;
     width: 100px;
     word-wrap: break-word;
 }
 
+/*Ancho de alguna celdas de tablas*/
 .tdth1{
     width:20px;
 }
@@ -50,6 +62,7 @@ th, td {
     width: 50px;
 }
 
+/*Letra pequeña*/
 small{
     font-size: xx-small;
 }
@@ -63,16 +76,21 @@ small{
     font-family: tizaMinusculas;
     src: url(../fuente/buena.ttf);
 }
+
+/*Tamaño para algunas fotos*/
 .foto{
 
     font-size: xx-small;
+}
+/*Quitando subrayado al pasar cursor por encima del link*/
+a:hover{
+    text-decoration: none;
 }
 main{
     padding-left: 100px;
 }
 
 .container {
-    
     background-color:unset;
 }
 .card{

@@ -32,7 +32,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" maxlength="20" required pattern="[a-zA-Z]+" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -56,13 +56,20 @@
                         </div>
                         @if(empty($clase))<!--Aquí comprobamos que la variable no esté vacía, es el caso q se crea un alumno sin clase
                                                 si tuviera clase significa que la crea el profesor desde una clase en concreto.-->
-                        <div class="form-group row">
-                            <label for="clase_id" class="col-md-4 col-form-label text-md-right">{{ __('Clase núm:') }}</label>
+                            <div class="form-group row">
+                                <label for="clase_id" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona la clase') }}</label>
+                                    <div class="col-md-6">
+                                        <select id="clase_id" name="clase_id">
 
-                            <div class="col-md-6">
-                                <input id="clase_id" type="number" name="clase_id" class="form-control">
-                            </div>
-                        </div>
+                                            <option value="0">Sin clase</option>
+                                            @foreach($clases as $cl)
+                                            <option value="{{$cl->id}}">{{$cl->nombre}}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                            </div> 
+                        
                         @else
                         
                         <div class="form-group row">
@@ -73,13 +80,18 @@
                             </div>
                         </div>
                         @endif
-                        <div class="form-group row">
-                            <label for="progenitore_id" class="col-md-4 col-form-label text-md-right">{{ __('Progenitor núm:') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="progenitore_id" type="number" name="progenitore_id"  class="form-control">
+                        <div class="form-group row">
+                                <label for="progenitore_id" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona al progenitor:') }}</label>
+                                    <div class="col-md-6">
+                                        <select id="clase_id" name="clase_id">
+                                            <option value="0">Sin progenitor</option>
+                                            @foreach($progenitores as $pr)
+                                            <option value="{{$pr->id}}">{{$pr->user->name}} Id:{{$pr->id}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                             </div>
-                        </div>
                         <div class="form-group row">
                             <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Rol núm:') }}</label>
 

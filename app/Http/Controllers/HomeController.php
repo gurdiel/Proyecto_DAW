@@ -30,6 +30,7 @@ class HomeController extends Controller
     {
         if(Auth::user()->role_id == 2){
             $clases = Auth::user()->docente->clase;
+            
         return view('home',compact('clases'));
         }
         elseif(Auth::user()->role_id == 3){

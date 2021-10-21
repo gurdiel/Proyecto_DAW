@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Clase extends Model
 {
     protected $fillable = [
-        'nombre','horarios','anuncios','docente_id','mensaje_id'
+        'nombre','horarios','anuncios','docente_id','horario_id'
     ];
 
     public function mensaje(){
 
         return $this->hasMany('App\Mensaje');
+    }
+
+    public function horario(){
+
+        return $this->belongsTo('App\Horario');
     }
 
     // En el usuario progenitor no lo estoy usando.

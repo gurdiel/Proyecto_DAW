@@ -15,4 +15,8 @@ class Progenitore extends Model
 
         return $this->hasMany("App\Escolare");
     }
+    public function user(){
+
+        return $this->belongsTo("App\User");
+    }
 }

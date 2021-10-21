@@ -10,7 +10,7 @@
   </ol>
 </nav>
 
-@endsection
+@endsection 
 
 @section('contenido')
 <div class="container">

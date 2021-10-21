@@ -44,6 +44,7 @@ class AdminDocentesController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $entrada = $request->all();
 
         if($archivo=$request->file('foto_id')){

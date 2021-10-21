@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Clase;
 use App\Escolare;
 use App\Mensaje;
-use Illuminate\Http\Request;
+use App\Horario;
+use Illuminate\Http\Request; 
 
 class AdminClasesController extends Controller
 {
@@ -28,7 +29,7 @@ class AdminClasesController extends Controller
      */
     public function create()
     {
-
+ 
         return view('admin.clases.create');
     }
 
@@ -40,12 +41,27 @@ class AdminClasesController extends Controller
      */
     public function store(Request $request)
     {
+        $entrada = $request->all();
+
+        if($archivo=$request->file('horario_id')){
+
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move('archivos', $nombre);
+            $horario = Horario::create(['nombre'=>$request->get('nombre'),
+                                        'ruta_horario'=>$nombre]);
+            $entrada['horario_id'] = $horario->id;
+
+        }else{
+            $entrada['horario_id'] = NULL;
+        }
+
+        
         Clase::create([
             'nombre' => $request['nombre'],
             'horarios' => $request['horarios'],
             'anuncios' => $request['anuncios'],
             'docente_id' => $request['docente_id'],
-            'mensaje_id' => 0,//Esto para que funciones quitamos de aquí cuando hagamos la tabla bien.
+            'horario_id' => $entrada['horario_id'],
                 ]);
 
             $clases = Clase::all();
@@ -62,6 +78,11 @@ class AdminClasesController extends Controller
     public function show($id)
     {
         //
+        $clase = Clase::findOrFail($id);
+
+        $horario = Horario::findOrFail($clase->horario_id);
+
+        return view('admin.clases.vista',compact('horario'));
     }
 
     /**

@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb migas">
   <ol class="breadcrumb migas">
     
-    <li class="breadcrumb-item active"><a href="{{ url('/home') }}">Inicio</a></li>
+    <li class="breadcrumb-item active"><a class="noSub" href="{{ url('/home') }}">Inicio</a></li>
     <li class="breadcrumb-item" aria-current="page">Usuarios</li>
   </ol>
 </nav>
@@ -15,7 +15,7 @@
         @if(Auth::user())
         @if(Auth::user()->role_id == 1)
         <div class="container-fluid pad peq2">        
-        <div class="title-card text-light grande">Lista completa de usuarios registrados</div>
+        <div class="title-card text-warning grande">Lista completa de usuarios registrados</div>
                         <table class="table table-hover pad">
 
                         <tr class="text-success">

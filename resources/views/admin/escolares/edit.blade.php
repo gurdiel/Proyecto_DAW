@@ -110,22 +110,22 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                        <label for="puntos" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona un ítem') }}</label>
-                            <div class="col-md-6">
-                                <select id="heroe" name="heroe">
+                            <label for="puntos" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona un ítem') }}</label>
+                                <div class="col-md-6">
+                                    <select id="heroe" name="heroe">
 
-                                <option value="">Elige una opción</option>
+                                        <option value="">Elige una opción</option>
 
-                                <option value="3">Iron Man</option>
+                                        <option value="3">Iron Man</option>
 
-                                <option value="1">Capitán América</option>
+                                        <option value="1">Capitán América</option>
 
-                                <option value="4">Hulk</option>
+                                        <option value="4">Hulk</option>
 
-                                <option value="2">Thor</option>
+                                        <option value="2">Thor</option>
 
-                                </select>
-                            </div>
+                                    </select>
+                                </div>
                         </div>                 
                         <div class="centrado pad">
                             <div class="centrado">

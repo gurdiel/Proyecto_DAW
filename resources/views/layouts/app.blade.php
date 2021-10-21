@@ -27,9 +27,9 @@
 </head>
 <body>
 <A name="arriba"></A>
-    <div class="container">
-        <div class="container padtop">
-        <nav class="navbar navbar-expand-md shadow-sm padtop">
+<div class="container">
+<div class="container">
+            <nav class="navbar navbar-expand-md fixed-top padtop bgNav">
                 <a class="navbar-brand text-info" href="{{ url('/') }}">
                 <img src="{{asset('images/lo.png')}}" width="50" height="50" alt="logo">
                 KTC
@@ -78,15 +78,14 @@
                     </ul>
                 </div>
             
-        </nav>
-        </div>
-        <div class="row">
-            <div class="container pad">
+            </nav>
+</div>
+        
+<div class="container pad">
              @yield('contenido')
-            </div>
-        </div>
+</div>
+</div>
     
-    </div>
     <div id="footer">
         <p>KTC<br><br><small>by</small> Rafael Gurdiel Sanchez - 2020</p>
     </div>

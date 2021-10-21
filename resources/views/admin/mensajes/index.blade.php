@@ -46,7 +46,7 @@
         <button type="button" class="btn btn-info" onclick="location.href='#arriba';">Ir arriba</button>
         @if(Auth::user()->role_id == 1)
         <button type="button" class="btn btn-info" onclick="location.href='{{url('/admin/mensajes')}}';">Atrás</button>
-        @elseif(Auth::user()->role_id == 2)
+        @elseif(Auth::user()->role_id == 2 || Auth::user()->role_id == 3 )
         <button type="button" class="btn btn-info" onclick="location.href='{{url('/home')}}';">Atrás</button>
         @endif
       </div>

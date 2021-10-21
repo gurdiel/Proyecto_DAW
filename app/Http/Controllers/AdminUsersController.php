@@ -11,6 +11,8 @@ use App\Escolare;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
+//Revisar todos estos métodos no se usan.
+
 
 class AdminUsersController extends Controller
 {
@@ -22,11 +24,6 @@ class AdminUsersController extends Controller
     
     public function index()
     {   
-        /*$docentes = User::all();
-
-        foreach ($docentes as $d)
-            $usuarios[]= $d->docente;*/
-
         $usuarios = User::all();
         return view('admin.users.index',compact('usuarios'));
     }
@@ -47,31 +44,10 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function registerDocente(){
-
-        return view('register.docente');
-    }
-    public function registerProgenitor(){
-
-        return view('register.progenitor');
-    }
-    public function registerEscolar(){
-
-        return view('register.escolar');
-    }
-    public function registerAdministrador(){
-
-        return view('register.administrador');
-    }
-
-    public function administrador(){
-
-        return view('admin.users.administrador');
-    }
-
-
     public function store(Request $request)
     {     
+        /*
+        
         $entrada = $request->all();
         
         if($archivo=$request->file('foto_id')){
@@ -139,7 +115,7 @@ class AdminUsersController extends Controller
 
         
         $usuarios = User::all();
-        return view('admin.users.index',compact('usuarios'));
+        return view('admin.users.index',compact('usuarios'));*/
 
         
     }
@@ -155,7 +131,7 @@ class AdminUsersController extends Controller
         //
         $escolar = Escolare::findOrFail($id);
         $items = Item::all();
-        return view('admin.escolares.destroy',compact('escolar'),compact('items'));
+        return view('admin.escolares.vista',compact('escolar'),compact('items'));
     }
 
     /**
