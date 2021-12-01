@@ -1,0 +1,8 @@
+Instrucciones para el funcionamiento de este repositorio de manera local.
+
+1. Tener instalado XAMPP en el PC, como servidor local. Soporte de Base de datos MySQL, y interprete de PHP
+2. Copiar este repositorio completo en una carpeta dentro de C:\xampp\htdocs
+3. Entrar en localhost para cargar la base de datos desde phpMyAdmin.
+4. Crear base de datos llamada aplicación y en el boton importar cargar el archivo "aplicacion.sql"
+5. Acceder a http://localhost/Proyecto_DAW/public/
+6. Ya estaría la aplicación funcionando con la BBDD.
