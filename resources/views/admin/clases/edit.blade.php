@@ -75,6 +75,13 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="horario_id" class="col-md-4 col-form-label text-md-right">{{ __('Horarios:') }}</label>
+
+                                <div class="col-md-6 foto">
+                                    <input id="horario_id" type="file" name="horario_id" accept="application/pdf">
+                                </div>
+                            </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-success text-dark">

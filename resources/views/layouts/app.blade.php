@@ -50,7 +50,7 @@
                         @yield('migasdepan')
                         @guest
                         <li class="nav-item">
-                                <a class="nav-link text-info" href="{{ route('users.create') }}">{{ __('Resgistrate') }}</a>
+                                <a class="nav-link text-info" href="{{ route('users.create') }}">{{ __('Regístrate') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-info" href="{{ route('login') }}">{{ __('Acceso') }}</a>

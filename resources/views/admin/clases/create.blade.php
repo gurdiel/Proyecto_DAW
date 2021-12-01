@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="horarios" class="col-md-4 col-form-label text-md-right">{{ __('Horarios:') }}</label>
+                            <label for="horarios" class="col-md-4 col-form-label text-md-right">{{ __('Apunte Horario:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="horarios" type="text" class="form-control @error('horarios') is-invalid @enderror" name="horarios" value="{{ old('horarios') }}" required autocomplete="horarios" autofocus>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="horario_id" class="col-md-4 col-form-label text-md-right">{{ __('Horarios:') }}</label>
+                            <label for="horario_id" class="col-md-4 col-form-label text-md-right">{{ __('Horarios pdf:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="horario_id" type="file" accept="application/pdf" class="form-control @error('horarios') is-invalid @enderror" name="horario_id" value="{{ old('horarios') }}" required autocomplete="horarios" autofocus>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="anuncios" class="col-md-4 col-form-label text-md-right">{{ __('Anuncios:') }}</label>
+                            <label for="anuncios" class="col-md-4 col-form-label text-md-right">{{ __('Info Aula:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="anuncios" type="text" class="form-control @error('anuncios') is-invalid @enderror" name="anuncios" value="{{ old('anuncios') }}" required autocomplete="anuncios" autofocus>

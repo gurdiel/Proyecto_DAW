@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Docente;
+use Illuminate\Database\Eloquent\Collection;
 
 class ExampleTest extends TestCase
 {
@@ -14,6 +16,12 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $docente = new Docente;
+
+        $this->assertInstanceOf(Collection::class, $docente->clase);
+
+        //Podemos comprobar que devuelve una colección de clases, es decir un docente tiene varias clases.
+        //profundizando más seguramente para crear los archivos tenga una conveción de nombre para que se ejecute.
+
     }
 }

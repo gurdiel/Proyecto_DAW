@@ -28,7 +28,6 @@
                 @endif
             @else
                 <div class="panel-title grande text-warning pad">Registro para progenitores:</div>
-                <a href="{{url('admin/docentes/create')}}" class="list-group-item list-group-item-action card text-danger text-center">Docentes</a>
                  <a href="{{url('admin/progenitores/create')}}" class="list-group-item list-group-item-action card text-danger text-center">Entrar para registro</a>
                 </div>
               

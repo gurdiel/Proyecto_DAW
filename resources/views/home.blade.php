@@ -94,14 +94,19 @@
                                     @foreach($hijos as $hijo) 
                                         <div class="container grupo text-center">
                                             <p class="text-info">Tu hijo {{ $hijo->user->name }} va a la clase: {{$hijo->clase->nombre}}</p>
-                                                <div class="row">
-                                                        <div class="col-3"></div>
+                                                <div class="row grupo justify-content-center">
                                                         <div class="col-3">
                                                             <a href="{{route('mensajes.show', $hijo->clase->id)}}" class="list-group-item list-group-item-action list-group-item-info peq">Ver Mensajes</a>
                                                         </div>
                                                         <div class="col-3">
                                                             <a href="{{route('users.show', $hijo->id)}}" class="list-group-item list-group-item-action list-group-item-warning peq">Ver Logros</a>
                                                         </div> 
+                                                        <div class="col-3">
+                                                            <a href="archivos/{{$hijo->clase->horario->ruta_horario}}" target="blank_" class="list-group-item list-group-item-action list-group-item-warning peq">Ver Horario</a>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <a href="archivos/{{$hijo->nota->ruta_nota}}" target="blank_" class="list-group-item list-group-item-action list-group-item-info peq">Ver Notas</a>
+                                                        </div>
                                                 </div>
                                         </div>
                                     @endforeach
@@ -126,19 +131,20 @@
                                                 @if($item->escolare_id == $escolar->id)
                                                 
                                                     <div class="card col-md-8 col-lg-8 col-xl-8">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title text-primary">Nombre.</h5>
-                                                            <p class="card-text">Comentario</p>
-                                                        </div>
+                                                        
                                                         <img class="card-img-top" src="images/{{$item->fotoitem->ruta_foto}}" alt="{{$item->id}}">
                                                         
                                                     </div>
                                                 
+                                                <!--<body onload="return alert('No tienes ningún item aún. CONSIGUELOS!');">-->
                                                 @endif
+                                                
                                             @endforeach
                                         </div>
                                     </div>
-                                    <p>Te quedan {{$escolar->puntos}} puntos.</p>
+                                    <div class="card-group padtop">
+                                    <p class="text-warning">Te quedan {{$escolar->puntos}} puntos.</p>
+                                    </div>
                                         <!--
                                             {{Auth::user()->escolare->clase->anuncios}}
 

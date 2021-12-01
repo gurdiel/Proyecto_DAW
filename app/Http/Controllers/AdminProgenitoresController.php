@@ -7,10 +7,11 @@ use App\User;
 use App\Progenitore;
 use App\Escolare;
 use App\Foto;
+use App\Nota;
 use Illuminate\Support\Facades\Hash;
 
 class AdminProgenitoresController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +42,7 @@ class AdminProgenitoresController extends Controller
     public function store(Request $request)
     {
         $entrada = $request->all();
-
+  
         if($archivo=$request->file('foto_id')){
 
             $nombre=$archivo->getClientOriginalName();

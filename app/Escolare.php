@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Escolare extends Model
 {
     protected $fillable = [
-        'user_id','clase_id', 'puntos','progenitore_id',
+        'user_id','clase_id', 'puntos','progenitore_id', 'nota_id',
     ];
 
     public function clase(){
@@ -23,7 +23,7 @@ class Escolare extends Model
 
         return $this->belongsTo('App\Progenitore');
     }
-    
+     
     */
     public function user(){
 
@@ -33,6 +33,10 @@ class Escolare extends Model
     public function item(){
 
         return $this->hasMany("App\Item");//un escolar tiene muchos items.
+    }
+    public function nota(){
+
+        return $this->belongsTo("App\Nota");
     }
 
 }

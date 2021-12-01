@@ -24,7 +24,7 @@
                             <th class="tdth2" scope="col">Nombre</th>
                             <th class="tdth1" scope="col">Pts.</th>
                             <th class="tdth2" scope="col">Items</th>
-                            <th class="tdth2" scope="col">Núm. Usuario</th>
+                            <th class="tdth2" scope="col">Notas</th>
                             <th class="tdth2" scope="col">Opciones</th>
                         </tr>
                         <tbody>
@@ -33,7 +33,7 @@
                                 @if($alumno->clase_id == $clase->id)
 
                                     <tr>
-                                        <td class="tdth1">{{$alumno->id}}</td>
+                                        <td class="tdth1">{{$alumno->clase_id}}</td>
                                         <td class="tdth2">{{$alumno->user->name}}</td>
                                         <td class="tdth1">{{$alumno->puntos}}</td>
                                         <td class="tdth2">
@@ -44,7 +44,7 @@
                                         
                                         </td>
 
-                                        <td class="tdth1">{{$alumno->user_id}}</td>
+                                        <td class="tdth1"><a href="../../archivos/{{$alumno->nota->ruta_nota}}" target="blank_" class="list-group-item list-group-item-action list-group-item-warning peq">Ver Notas</a></td>
                                         <td class="tdth2" style="vertical-align:middle;">
                             <a href="{{route('escolares.edit',$alumno->user_id)}}" class="btn btn-warning">Editar</a>
                             <form method="POST" action="{{ url('/admin/docentes/'.$alumno->id) }}">

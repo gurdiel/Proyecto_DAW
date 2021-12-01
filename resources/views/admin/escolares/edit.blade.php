@@ -24,7 +24,7 @@
 
                 <div class="card-header text-warning">EDITANDO...</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ url('/admin/escolares/'.$user->escolare->id) }}">
+                        <form method="POST" action="{{ url('/admin/escolares/'.$user->escolare->id) }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
                                 <div class="form-group row justify-content-center">
@@ -109,6 +109,20 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="foto_id" class="col-md-4 col-form-label text-md-right">{{ __('Foto:') }}</label>
+
+                                <div class="col-md-6 foto">
+                                    <input id="foto_id" type="file" name="foto_id" accept="image/png, .jpeg, .jpg, image/gif">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                            <label for="nota_id" class="col-md-4 col-form-label text-md-right">{{ __('Notas:') }}</label>
+
+                                <div class="col-md-6 foto">
+                                    <input id="nota_id" type="file" name="nota_id" accept="application/pdf">
+                                </div>
+                            </div>
                         <div class="form-group row">
                             <label for="puntos" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona un ítem') }}</label>
                                 <div class="col-md-6">

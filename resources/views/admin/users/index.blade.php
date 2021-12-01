@@ -111,7 +111,9 @@
         NO ESTáS REGISTRADO
         @endif
         @else
-        Accede a tu área personal. O podemos poner esto en otra vista.
+        <p>Accede a tu área personal.</p>
+        
+
         @endif
         
 @endsection

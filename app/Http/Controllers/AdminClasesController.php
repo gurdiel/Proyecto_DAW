@@ -110,6 +110,18 @@ class AdminClasesController extends Controller
         $clase = Clase::findOrFail($id);
         $entrada = $request->all();
 
+        if($archivo=$request->file('horario_id')){
+
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move('archivos', $nombre);
+            $horario = Horario::create(['nombre'=>$request->get('nombre'),
+                                        'ruta_horario'=>$nombre]);
+            $entrada['horario_id'] = $horario->id;
+
+        }else{
+            $entrada['horario_id'] = NULL;
+        }
+
         $clase->update($entrada);
         
         $clases = Clase::all();

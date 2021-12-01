@@ -51,7 +51,10 @@ class User extends Authenticatable
 
         return $this->hasOne('App\Escolare');
     }
+    public function nota(){
 
+        return $this->belongsTo('App\Nota');
+    }
 
     public function progenitore(){
 

@@ -9,5 +9,5 @@ class Horario extends Model
     protected $fillable = [
         'nombre', 'ruta_horario',
     ];
-
+ 
 }

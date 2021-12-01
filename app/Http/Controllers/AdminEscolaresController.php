@@ -9,6 +9,7 @@ use App\Clase;
 use App\User;
 use App\Item;
 use App\Foto;
+use App\Nota;
 use Auth;
 
 use Illuminate\Support\Facades\Hash;
@@ -43,9 +44,11 @@ class AdminEscolaresController extends Controller
     {
         //
         $clase = Clase::findOrFail($claseid);
+        $progenitores = Progenitore::all();
 
         //a ver que pasa aquí cuando creemos desde el perfil profesor.
-        return view('admin.escolares.create',compact('clase'));//Aquí hay q cambiar la vista pero no sé donde dejará de funcionar.
+        //También le tenemos que pasar los progenitores para que pueda seleccionar de la lista.
+        return view('admin.escolares.create',compact('clase'),compact('progenitores'));
     }
 
     /**
@@ -57,6 +60,17 @@ class AdminEscolaresController extends Controller
     public function store(Request $request)
     {
         $entrada = $request->all();
+
+        if($archivo=$request->file('nota_id')){
+
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move('archivos', $nombre);
+            $nota = Nota::create(['ruta_nota'=>$nombre]);
+            $entrada['nota_id'] = $nota->id;
+
+        }else{
+            $entrada['nota_id'] = NULL;
+        }
         
         if($archivo=$request->file('foto_id')){
 
@@ -86,8 +100,8 @@ class AdminEscolaresController extends Controller
             'clase_id' => $request['clase_id'],
             'puntos' => 0,
             'progenitore_id' => $request['progenitore_id'],
+            'nota_id' => $entrada['nota_id'],
 
-            
         ]); 
         //Diferenciamos cuando creamos con admin o cuando creamos desde una clase con profesor.
         if(Auth::user()->role_id == 1){
@@ -101,7 +115,7 @@ class AdminEscolaresController extends Controller
             return view('home',compact('clases'));
         }
 
-
+ 
     }
     /**
      * Display the specified resource.
@@ -143,11 +157,20 @@ class AdminEscolaresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
         $escolar= Escolare::findOrFail($id);
         $user = User::findOrFail($escolar->user_id);
 
         $entrada = $request->all();
+        
+        if($archivo=$request->file('nota_id')){
+
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move('archivos', $nombre);
+            $nota = Nota::create(['ruta_nota'=>$nombre]);
+            $entrada['nota_id'] = $nota->id;
+
+        }
 
         if($archivo=$request->file('foto_id')){
 

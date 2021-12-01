@@ -27,7 +27,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required pattern="[a-zA-Z]+" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                             <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Apellido:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required pattern="[a-zA-Z]+" autofocus>
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                             <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
+                                <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required pattern="^[0-9]{9}" autofocus>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -83,7 +83,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

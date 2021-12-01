@@ -45,7 +45,7 @@
                             <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Apellido:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required pattern="[a-zA-Z]+" autofocus>
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -76,15 +76,16 @@
                             <label for="clase_id" class="col-md-4 col-form-label text-md-right">{{ __('Clase núm:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="clase_id" type="number" name="clase_id" value="{{$clase->id}}" class="form-control">
+                                <input id="clase_id" type="number" name="clase_id" value="{{$clase->id}}" class="form-control" readonly>
                             </div>
                         </div>
                         @endif
 
+                        @if(!empty($progenitores))
                         <div class="form-group row">
                                 <label for="progenitore_id" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona al progenitor:') }}</label>
                                     <div class="col-md-6">
-                                        <select id="clase_id" name="clase_id">
+                                        <select id="progenitore_id" name="progenitore_id">
                                             <option value="0">Sin progenitor</option>
                                             @foreach($progenitores as $pr)
                                             <option value="{{$pr->id}}">{{$pr->user->name}} Id:{{$pr->id}}</option>
@@ -92,6 +93,15 @@
                                         </select>
                                     </div>
                             </div>
+                        @else
+                            <div class="form-group row">
+                                <label for="progenitore_id" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona al progenitor:') }}</label>
+                                <div class="col-md-6">
+                                    <input id="progenitore_id" type="number" name="progenitore_id" value="0" class="form-control">
+                                </div>  
+                            </div>
+
+                        @endif
                         <div class="form-group row">
                             <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Rol núm:') }}</label>
 
@@ -106,6 +116,19 @@
                                 <input id="foto_id" type="file" name="foto_id" accept="image/png, .jpeg, .jpg, image/gif">
                             </div>
                             </div>
+                            <div class="form-group row">
+                            <label for="nota_id" class="col-md-4 col-form-label text-md-right">{{ __('Notas en pdf:') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nota_id" type="file" accept="application/pdf" class="form-control @error('notas') is-invalid @enderror" name="nota_id" value="{{ old('notas') }}" required autocomplete="notas" autofocus>
+
+                                @error('notas')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email:') }}</label>
 
